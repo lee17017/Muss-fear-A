@@ -11,10 +11,12 @@ public class MainMenu : MonoBehaviour {
     public Button Return;
     public Button Zurück;
     public Button Weiter;
+    public Button start;
     public Image Player1;
     public Image Player2;
     public Image Player3;
     public Image Player4;
+
 
 	// Use this for initialization
 	void Start () {
@@ -62,9 +64,11 @@ public class MainMenu : MonoBehaviour {
                 //Optionenbuttons aktivieren                                                            !!!!!
                 break;
             case 3://Singleplayer
-                //Image Player1 aktivieren und in Mitte positionieren                                   !!!!!
-                Player1.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+                //Image Player1 aktivieren und richtig positionieren (+Pla2)
+                Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 100, 0);
                 Player1.gameObject.SetActive(true);
+                Player2.GetComponent<RectTransform>().localPosition = new Vector3(75, -50, 0);
+                Player2.gameObject.SetActive(true);
                 break;
             case 4://Multiplayer
                 //Player1 auf Position setzen
@@ -98,8 +102,12 @@ public class MainMenu : MonoBehaviour {
             case 7://weiter
                 //Seitenumschalten vorwärts
                 break;
+            case 8://Start
+                //Wechsel zu Scene "Playing"
+                Application.LoadLevel(1);
+                break;
             default://Quit
-                //System.quit(0);
+                Application.Quit();
                 break;
         }
         
