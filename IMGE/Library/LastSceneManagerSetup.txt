@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Liou_Stuff/Liou.unity
-  isLoaded: 1
-  isActive: 1
