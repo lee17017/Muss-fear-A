@@ -9,12 +9,12 @@ public class CannonBehavior : MonoBehaviour {
     public GameObject bullet;
 
     private GameObject bulletSpawnPoint;
-	// Use this for initialization
+
 	void Start () {
-        bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
+        bulletSpawnPoint = GameObject.Find("BulletSpawnPoint"); 
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 
         //Rotation der Kanone in einem Bereich
