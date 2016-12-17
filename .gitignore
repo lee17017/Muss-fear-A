@@ -23,6 +23,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-/IMGE/Library/
-/IMGE/Temp/
-*.pdf
+IMGE/[Ll]ibrary/
+IMGE/[Tt]emp/
+IMGE/[Oo]bj/
+IMGE/[Bb]uild/
+IMGE/[Bb]uilds/
+IMGE/Assets/AssetStoreTools*
