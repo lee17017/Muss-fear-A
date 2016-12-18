@@ -16,22 +16,25 @@ public class MainMenu : MonoBehaviour {
     public Image Player2;
     public Image Player3;
     public Image Player4;
+    public Image Info;
+    public Text Infotext;
 
 
 	// Use this for initialization
 	void Start () {
-        Multiplayer.gameObject.SetActive(true);//Multiplayer aktivieren
-        Singleplayer.gameObject.SetActive(true);//Singleplayer aktivieren
-        Help.gameObject.SetActive(true);//Help Aktivieren
-        Quit.gameObject.SetActive(true);//Quit aktivieren
-        Options.gameObject.SetActive(true);//Options aktivieren
-        Return.gameObject.SetActive(false);//Sprungbuttons deaktivieren
-        Zurück.gameObject.SetActive(false);
-        Weiter.gameObject.SetActive(false);
-        Player1.gameObject.SetActive(false);//Images deaktivieren
-        Player2.gameObject.SetActive(false);
-        Player3.gameObject.SetActive(false);
-        Player4.gameObject.SetActive(false);
+        //Alles voreingestellt...
+        //Multiplayer.gameObject.SetActive(true);//Multiplayer aktivieren
+        //Singleplayer.gameObject.SetActive(true);//Singleplayer aktivieren
+        //Help.gameObject.SetActive(true);//Help Aktivieren
+        //Quit.gameObject.SetActive(true);//Quit aktivieren
+        //Options.gameObject.SetActive(true);//Options aktivieren
+        //Return.gameObject.SetActive(false);//Sprungbuttons deaktivieren
+        //Zurück.gameObject.SetActive(false);
+        //Weiter.gameObject.SetActive(false);
+        //Player1.gameObject.SetActive(false);//Images deaktivieren
+        //Player2.gameObject.SetActive(false);
+        //Player3.gameObject.SetActive(false);
+        //Player4.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -59,6 +62,9 @@ public class MainMenu : MonoBehaviour {
                 //Schaltflächen aktivieren
                 Zurück.gameObject.SetActive(true);
                 Weiter.gameObject.SetActive(true);
+                //Info aktivieren
+                Info.gameObject.SetActive(true);
+                Infotext.gameObject.SetActive(true);
                 break;
             case 2://Options
                 //Optionenbuttons aktivieren                                                            !!!!!
@@ -95,6 +101,9 @@ public class MainMenu : MonoBehaviour {
                 Player2.gameObject.SetActive(false);
                 Player3.gameObject.SetActive(false);
                 Player4.gameObject.SetActive(false);
+                Info.gameObject.SetActive(false);
+                //Text deaktivieren
+                Infotext.gameObject.SetActive(false);
                 break;
             case 6://Zurück
                 //Seitenumschalten rückwärts
