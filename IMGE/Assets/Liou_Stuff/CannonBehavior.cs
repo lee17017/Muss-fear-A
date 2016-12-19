@@ -16,16 +16,16 @@ public class CannonBehavior : MonoBehaviour {
         if(controller)
             InputManager.Init(playerNr);
 	}
-	
-
+    
 	void Update () {
-        float curRot = transform.rotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
-
+        
+        float curLocRot = transform.localRotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
+        float curRot = transform.rotation.eulerAngles.y; // absolute rotation für instantiation
 
         if (controller)
         {
             //Rotieren
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, InputManager.Analog(playerNr,1),0), Time.time * rotateSpeed);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, InputManager.Analog(playerNr,1),0), Time.time * rotateSpeed);
 
             //Schießen
             if(InputManager.Pressed(playerNr,3))
@@ -36,7 +36,7 @@ public class CannonBehavior : MonoBehaviour {
             //Rotation der Kanone in einem Bereich
             float tmp = Input.GetAxis("Horizontal");          
 
-            if ((tmp > 0 && (curRot < 180 - deadAngle || curRot > 180)) || (tmp < 0 && (curRot > 180 + deadAngle || curRot < 180)))
+            if ((tmp > 0 && (curLocRot < 180 - deadAngle || curLocRot > 180)) || (tmp < 0 && (curLocRot > 180 + deadAngle || curLocRot < 180)))
                 transform.Rotate(new Vector3(0, tmp, 0) * Time.deltaTime * rotateSpeed);
 
 
