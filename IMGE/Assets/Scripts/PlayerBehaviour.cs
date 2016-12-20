@@ -12,8 +12,14 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        getInput();
+	}
+
+    void getInput()
+    {
         int in1, in2;
         in1 = in2 = 0;
+        //Maussteuerung
         if (Input.GetButton("Fire2"))
         {
             in1 = 1;
@@ -22,9 +28,13 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             in2 = 1;
         }
+        //Kontrollersteuerung
+        in1=InputManager.Analog(0,3);
+        in2 = InputManager.Analog(0, 4);
+        //Ausführung
         turn(in1,in2);
         move(in1, in2);
-	}
+    }
     void turn(int in1, int in2)
     {
         if (in1 < in2)
