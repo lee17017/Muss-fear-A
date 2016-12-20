@@ -9,7 +9,7 @@ public class CannonBehavior : MonoBehaviour {
     public GameObject bullet;
 
     private GameObject bulletSpawnPoint;
-    private int playerNr = 1;//2.Player
+    private int playerNr = 0;//2.Player
 	void Start () {
         bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
 
