@@ -4,10 +4,10 @@ using System.Collections;
 
 
 public class PlayerBehaviour : MonoBehaviour {
-
+    private int PlayerNumber=0;
 	// Use this for initialization
 	void Start () {
-	    
+        InputManager.Init(PlayerNumber);
 	}
 	
 	// Update is called once per frame
@@ -20,17 +20,17 @@ public class PlayerBehaviour : MonoBehaviour {
         int in1, in2;
         in1 = in2 = 0;
         //Maussteuerung
-        if (Input.GetButton("Fire2"))
-        {
-            in1 = 1;
-        }
-        if(Input.GetButton("Fire1"))
-        {
-            in2 = 1;
-        }
+        //if (Input.GetButton("Fire2"))
+        //{
+        //    in1 = 1;
+        //}
+        //if(Input.GetButton("Fire1"))
+        //{
+        //    in2 = 1;
+        //}
         //Kontrollersteuerung
-        in1=InputManager.Analog(0,3);
-        in2 = InputManager.Analog(0, 4);
+        in1=(int)InputManager.Analog(PlayerNumber,4);
+        in2 = (int)InputManager.Analog(PlayerNumber, 3);
         //Ausführung
         turn(in1,in2);
         move(in1, in2);
@@ -55,7 +55,8 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         float sin = Mathf.Sin(roty);
         float cos = Mathf.Cos(roty);
-        Debug.Log(roty+" Sinus:"+sin+" Cosinus:"+cos);
+        //Debug.Log(roty+" Sinus:"+sin+" Cosinus:"+cos);
+        Debug.Log(in1 + " " + in2);
         if (sin < 0)
         {
             sin *= -1;

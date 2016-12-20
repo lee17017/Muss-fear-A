@@ -6,7 +6,7 @@ public static class InputManager {
     
     private static string recData = "";
     private static float winkel;
-    private static float maxPow;
+    private static float maxPow=10;
     private static int max = 4095;
     private static int[] masks = new int[] { 0x40, 0x80, 0x100, 0x200, 0x400, 0x800 };
 
@@ -37,7 +37,7 @@ public static class InputManager {
         zahl = (System.Convert.ToInt32(parts[regler], 16));
 
         if (player == 0)
-            zahl = -(((zahl * 2 * winkel) / max));
+            zahl = (zahl * maxPow) / max;
         else if (player == 1)
             zahl = -(((zahl * 2 * winkel) / max) - winkel);
         
