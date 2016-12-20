@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannonBehavior : MonoBehaviour {
     public bool controller = false;
     public float rotateSpeed=50f;
-    public float deadAngle=30f;
+    public float deadAngle=40f;
     public GameObject bullet;
 
     private GameObject bulletSpawnPoint;
@@ -25,7 +25,7 @@ public class CannonBehavior : MonoBehaviour {
         if (controller)
         {
             //Rotieren
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, InputManager.Analog(playerNr,1),0), Time.time * rotateSpeed);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, InputManager.Analog(playerNr,1),0), Time.time);
 
             //Schießen
             if(InputManager.Pressed(playerNr,3))
@@ -46,6 +46,5 @@ public class CannonBehavior : MonoBehaviour {
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.Euler(90f, curRot, 0f));
             }
         }
-
     }
 }
