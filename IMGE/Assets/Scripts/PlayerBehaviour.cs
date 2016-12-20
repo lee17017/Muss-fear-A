@@ -6,10 +6,12 @@ using System.Collections;
 public class PlayerBehaviour : MonoBehaviour {
     private int PlayerNumber=0;
     public bool controller;
+    public int playerHP;
 	// Use this for initialization
 	void Start () {
         if(controller)
             InputManager.Init(PlayerNumber);
+        playerHP = 100;//100 start HP
 	}
 	
 	// Update is called once per frame
@@ -73,5 +75,24 @@ public class PlayerBehaviour : MonoBehaviour {
             cos *= -1;
         }
         transform.Translate(-Vector3.forward/*(sin, 0, cos)-gameObject.transform.forward*/ * (in1 + in2) * 5 * Time.deltaTime,Space.Self);
+    }
+
+    public void takeDamage(int damage)
+    {
+        playerHP -= damage;
+        if (playerHP > 0)
+            Debug.Log(playerHP);
+        else
+            Debug.Log("DEAD");
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Enemy")
+        {
+            takeDamage(5);
+            Destroy(col.gameObject);
+        }
+
     }
 }
