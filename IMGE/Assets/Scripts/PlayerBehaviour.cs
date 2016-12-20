@@ -5,10 +5,11 @@ using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour {
     private int PlayerNumber=0;
-    public bool controler;
+    public bool controller;
 	// Use this for initialization
 	void Start () {
-        InputManager.Init(PlayerNumber);
+        if(controller)
+            InputManager.Init(PlayerNumber);
 	}
 	
 	// Update is called once per frame
@@ -20,16 +21,15 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         int in1, in2;
         in1 = in2 = 0;
-        if (!controler)
+        if (!controller)
         {
-            if (Input.GetButton("Fire2"))
-            {
-                in1 = 1;
-            }
-            if(Input.GetButton("Fire1"))
-            {
-                in2 = 1;
-            }
+            
+           if (Input.GetButton("Fire1"))
+                in2 = 3;
+
+           if (Input.GetButton("Fire2"))
+                in1 = 3;
+
             //Kontrollersteuerung
         }
         else
