@@ -5,6 +5,7 @@ using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour {
     private int PlayerNumber=0;
+    public bool controler;
 	// Use this for initialization
 	void Start () {
         InputManager.Init(PlayerNumber);
@@ -19,18 +20,24 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         int in1, in2;
         in1 = in2 = 0;
-        //Maussteuerung
-        //if (Input.GetButton("Fire2"))
-        //{
-        //    in1 = 1;
-        //}
-        //if(Input.GetButton("Fire1"))
-        //{
-        //    in2 = 1;
-        //}
-        //Kontrollersteuerung
-        in1=(int)InputManager.Analog(PlayerNumber,4);
-        in2 = (int)InputManager.Analog(PlayerNumber, 3);
+        if (!controler)
+        {
+            if (Input.GetButton("Fire2"))
+            {
+                in1 = 1;
+            }
+            if(Input.GetButton("Fire1"))
+            {
+                in2 = 1;
+            }
+            //Kontrollersteuerung
+        }
+        else
+        {
+            in1 = (int)InputManager.Analog(PlayerNumber, 4);
+            in2 = (int)InputManager.Analog(PlayerNumber, 3);
+        }
+        
         //Ausführung
         turn(in1,in2);
         move(in1, in2);
@@ -56,7 +63,7 @@ public class PlayerBehaviour : MonoBehaviour {
         float sin = Mathf.Sin(roty);
         float cos = Mathf.Cos(roty);
         //Debug.Log(roty+" Sinus:"+sin+" Cosinus:"+cos);
-        Debug.Log(in1 + " " + in2);
+        //Debug.Log(in1 + " " + in2);
         if (sin < 0)
         {
             sin *= -1;
