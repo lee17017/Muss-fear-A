@@ -18,6 +18,7 @@ public class CannonBehavior : MonoBehaviour {
         actMun = maxMun;
         if(controller)
             InputManager.Init(playerNr);
+
 	}
     
 	void Update () {
