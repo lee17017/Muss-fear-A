@@ -1,6 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*Änderungen von Oliver in:
+ * Start()
+ * Update() -> Schießen
+ * 
+ * Grund:
+ * Munitionsanzeige
+ */
 
 public class CannonBehavior : MonoBehaviour {
     public bool controller = false;
@@ -13,12 +20,16 @@ public class CannonBehavior : MonoBehaviour {
     private float shootTimer = 0, reloadTimer=0;
     private GameObject bulletSpawnPoint;
     private int playerNr = 1;//2.Player
+
 	void Start () {
         bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
         actMun = maxMun;
         if(controller)
             InputManager.Init(playerNr);
 
+        //Olivers Part
+        StateUpdater.setMunition(maxMun);
+        //
 	}
     
 	void Update () {
@@ -31,6 +42,9 @@ public class CannonBehavior : MonoBehaviour {
         {
             reloadTimer = 0;
             actMun++;
+            //Olivers Part
+            StateUpdater.UpdateStats(0, 1, 0);//Oder mit Button -> Refill all
+            //
         }
         float curLocRot = transform.localRotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
         float curRot = transform.rotation.eulerAngles.y; // absolute rotation für instantiation
@@ -59,6 +73,10 @@ public class CannonBehavior : MonoBehaviour {
                 shootTimer = shootCD;
                 actMun--;
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.Euler(90f, curRot, 0f));
+
+                //Olivers Part
+                StateUpdater.UpdateStats(0, -1, 0);
+                //
             }
         }
     }
