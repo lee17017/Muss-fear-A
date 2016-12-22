@@ -57,24 +57,15 @@ public class PlayerBehaviour : MonoBehaviour {
     }
     void move(int in1, int in2)
     {
-        float roty = (gameObject.transform.eulerAngles.y)%360;
-        if (roty < 0)
-        {
-            roty += 360;
-        }
-        float sin = Mathf.Sin(roty);
-        float cos = Mathf.Cos(roty);
+        //float roty = (gameObject.transform.eulerAngles.y)%360;
+        //if (roty < 0){roty += 360;}
+        //float sin = Mathf.Sin(roty);
+        //float cos = Mathf.Cos(roty);
         //Debug.Log(roty+" Sinus:"+sin+" Cosinus:"+cos);
         //Debug.Log(in1 + " " + in2);
-        if (sin < 0)
-        {
-            sin *= -1;
-        }
-        if (cos < 0)
-        {
-            cos *= -1;
-        }
-        transform.Translate(-Vector3.forward/*(sin, 0, cos)-gameObject.transform.forward*/ * (in1 + in2) * 5 * Time.deltaTime,Space.Self);
+        //if (sin < 0){sin *= -1;}
+        //if (cos < 0){cos *= -1;}
+        transform.Translate(-Vector3.forward * (in1 + in2) * 5 * Time.deltaTime,Space.Self);
     }
 
     public void takeDamage(int damage)
