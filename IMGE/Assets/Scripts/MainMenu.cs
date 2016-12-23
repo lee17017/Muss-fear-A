@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
-    public Button Multiplayer;
+    //public Button Multiplayer;
     public Button Singleplayer;
     public Button Help;
     public Button Quit;
@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour {
         //MainButtons deaktivieren + Return aktivieren
         if (ButtonID != 5 && ButtonID != 0)
         {
-            Multiplayer.gameObject.SetActive(false);
+            //Rausgenommen: Multiplayer.gameObject.SetActive(false);
             Singleplayer.gameObject.SetActive(false);
             Help.gameObject.SetActive(false);
             Quit.gameObject.SetActive(false);
@@ -75,8 +75,9 @@ public class MainMenu : MonoBehaviour {
                 Player1.gameObject.SetActive(true);
                 Player2.GetComponent<RectTransform>().localPosition = new Vector3(75, -50, 0);
                 Player2.gameObject.SetActive(true);
+                start.gameObject.SetActive(true);
                 break;
-            case 4://Multiplayer
+            case 4://Multiplayer (rausgenommen)
                 //Player1 auf Position setzen
                 Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 75, 0);
                 //Images aktivieren
@@ -87,15 +88,17 @@ public class MainMenu : MonoBehaviour {
                 break;
             case 5://Return
                 //Zu Main wechseln
-                Multiplayer.gameObject.SetActive(true);
+                //Rausgenommen: Multiplayer.gameObject.SetActive(true);
                 Singleplayer.gameObject.SetActive(true);
                 Help.gameObject.SetActive(true);
                 Quit.gameObject.SetActive(true);
                 Options.gameObject.SetActive(true);
-                Return.gameObject.SetActive(false);
+                
                 //Andere Buttons deaktivieren
+                Return.gameObject.SetActive(false);
                 Zurück.gameObject.SetActive(false);
                 Weiter.gameObject.SetActive(false);
+                start.gameObject.SetActive(false);
                 //Images deaktivieren
                 Player1.gameObject.SetActive(false);
                 Player2.gameObject.SetActive(false);
