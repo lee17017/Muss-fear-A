@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void getInput()
     {
-        int in1, in2;
+        float in1, in2;
         in1 = in2 = 0;
         if (!controller)
         {
@@ -36,15 +36,15 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         else
         {
-            in1 = (int)InputManager.Analog(PlayerNumber, 4);
-            in2 = (int)InputManager.Analog(PlayerNumber, 3);
+            in1 = InputManager.Analog(PlayerNumber, 4);
+            in2 = InputManager.Analog(PlayerNumber, 3);
         }
         
         //Ausführung
         turn(in1,in2);
         move(in1, in2);
     }
-    void turn(int in1, int in2)
+    void turn(float in1, float in2)
     {
         if (in1 < in2)
         {
@@ -55,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour {
             gameObject.transform.LookAt(gameObject.transform.position + gameObject.transform.forward + gameObject.transform.right/20);
         }
     }
-    void move(int in1, int in2)
+    void move(float in1, float in2)
     {
         //float roty = (gameObject.transform.eulerAngles.y)%360;
         //if (roty < 0){roty += 360;}
