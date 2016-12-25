@@ -47,7 +47,8 @@ public class StateUpdater : MonoBehaviour{
 
         Munition.rectTransform.sizeDelta = new Vector2(munition*6.4f, 12.8f);
         //Munition.rectTransform.localPosition.Set(390f - (munition*6.4f - 6.4f) / 2, -212f, 0f);
-        Munition.rectTransform.Translate(new Vector3(-(deltaMunition * 2.3f),0f, 0f));//390-munition*3.2
+        Munition.rectTransform.Translate(new Vector3(-(deltaMunition *(Screen.width/587f)*2.3f),0f, 0f));//390-munition*3.2
+        Debug.Log(Screen.width);
         //Score aktualisieren
         //TODO
     }

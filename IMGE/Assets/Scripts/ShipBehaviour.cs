@@ -19,7 +19,7 @@ public class ShipBehaviour : MonoBehaviour {
         //Bewegung
         Vector3 tmp = gameObject.transform.position;
         float Distance = Vector2.Distance(new Vector2(tmp.x, tmp.z), new Vector2(Ziel.x, Ziel.z));
-        if(Distance<5){
+        if(Distance<10){
             Ziel=nextZiel;
             nextZiel=GameObject.Find("Position"+(Zielcounter%10)).transform.position;
             Zielcounter++;
