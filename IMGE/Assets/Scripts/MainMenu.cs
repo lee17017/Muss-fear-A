@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour {
     public Image Player4;
     public Image Info;
     public Text Infotext;
+    public Toggle ShipControl;
+    public Toggle CanonControl;
 
 
 	// Use this for initialization
@@ -68,6 +70,8 @@ public class MainMenu : MonoBehaviour {
                 break;
             case 2://Options
                 //Optionenbuttons aktivieren                                                            !!!!!
+                ShipControl.gameObject.SetActive(true);
+                CanonControl.gameObject.SetActive(true);
                 break;
             case 3://Singleplayer
                 //Image Player1 aktivieren und richtig positionieren (+Pla2)
@@ -107,12 +111,18 @@ public class MainMenu : MonoBehaviour {
                 Info.gameObject.SetActive(false);
                 //Text deaktivieren
                 Infotext.gameObject.SetActive(false);
+                //Toggles deaktivieren
+                ShipControl.gameObject.SetActive(true);
+                CanonControl.gameObject.SetActive(true);
                 break;
             case 6://Zurück
                 //Seitenumschalten rückwärts
+                Infotext.text = "Seite -1: /nWhat are you doing here? /nDon't life in the past!";
+
                 break;
             case 7://weiter
                 //Seitenumschalten vorwärts
+                Infotext.text = "Seite 2/n/nMaussteuerung:/nLinke/rechte Maustaste um das Schiff zu steuern/nA und D um Geschütz zu rotieren/n Space um zu schießen";
                 break;
             case 8://Start
                 //Wechsel zu Scene "Playing"
