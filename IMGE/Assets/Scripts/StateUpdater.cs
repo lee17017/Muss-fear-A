@@ -9,12 +9,14 @@ public class StateUpdater : MonoBehaviour{
      * Updatet davon abhängig die Anzeigen am Bildschirm
      * 
      */
-    private static int HP=0;//Muss 0-100 sein
+    private static float HP=0;
+    private static int HPMax;
     private static int munition=0;
     private static int score=0;
-    private static Image Healthbar;
+    private static Image HealthbarYELLOW;
+    private static Image HealthbarGREEN;
     private static Image Munition;
-    private static Image Score;
+    private static Text Score;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +35,13 @@ public class StateUpdater : MonoBehaviour{
         Munition = GameObject.Find("Bullet-State-IMG").GetComponent<Image>();
         UpdateStats(0, muni-munition, 0);
     }
+    public static void setLife(int LifeMax)
+    {
+        HealthbarYELLOW = GameObject.Find("LebensbalkenYELLOW").GetComponent<Image>();
+        HealthbarGREEN = GameObject.Find("LebensbalkenGREEN").GetComponent<Image>();
+        HPMax = LifeMax;
+        UpdateStats(LifeMax, 0, 0);
+    }
 
     public static void UpdateStats(int deltaHP, int deltaMunition, int deltaScore)
     {
@@ -41,14 +50,14 @@ public class StateUpdater : MonoBehaviour{
         score += deltaScore;
 
         //Lebensleiste aktualisieren
-        //TODO
+        HealthbarGREEN.rectTransform.sizeDelta = new Vector2(200*(HP/HPMax), 20);
+        HealthbarGREEN.rectTransform.Translate(new Vector3(deltaHP * (Screen.width / 587f) * 2.3f, 0, 0));
 
         //Munitionsleiste aktualisieren
-
         Munition.rectTransform.sizeDelta = new Vector2(munition*6.4f, 12.8f);
         //Munition.rectTransform.localPosition.Set(390f - (munition*6.4f - 6.4f) / 2, -212f, 0f);
-        Munition.rectTransform.Translate(new Vector3(-(deltaMunition *(Screen.width/587f)*2.3f),0f, 0f));//390-munition*3.2
-        Debug.Log(Screen.width);
+        Munition.rectTransform.Translate(new Vector3(-(deltaMunition *(Screen.width/587f)*2.3f),0f, 0f));
+
         //Score aktualisieren
         //TODO
     }

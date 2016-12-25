@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
     public Text Infotext;
     public Toggle ShipControl;
     public Toggle CanonControl;
+    private int Infopage;
 
 
 	// Use this for initialization
@@ -41,7 +42,30 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (Infotext.IsActive()==true)
+        {
+            switch (Infopage)
+            {
+                case 0:
+                    Infotext.text = "Seite1\n\nText...";
+                    break;
+                case 1:
+                    Infotext.text = "Seite2\n\nText...";
+                    break;
+                case 2:
+                    Infotext.text = "Seite3\n\nText...";
+                    break;
+                case 3:
+                    Infotext.text = "Seite4\n\nText...";
+                    break;
+                case 4:
+                    Infotext.text = "Seite5\n\nText...";
+                    break;
+                default:
+                    Infopage = 0;
+                    break;
+            }
+        }
 	}
 
     public void MainButtons(int ButtonID)
@@ -67,6 +91,7 @@ public class MainMenu : MonoBehaviour {
                 //Info aktivieren
                 Info.gameObject.SetActive(true);
                 Infotext.gameObject.SetActive(true);
+                Infopage = 0;
                 break;
             case 2://Options
                 //Optionenbuttons aktivieren                                                            !!!!!
@@ -112,17 +137,16 @@ public class MainMenu : MonoBehaviour {
                 //Text deaktivieren
                 Infotext.gameObject.SetActive(false);
                 //Toggles deaktivieren
-                ShipControl.gameObject.SetActive(true);
-                CanonControl.gameObject.SetActive(true);
+                ShipControl.gameObject.SetActive(false);
+                CanonControl.gameObject.SetActive(false);
                 break;
             case 6://Zurück
                 //Seitenumschalten rückwärts
-                Infotext.text = "Seite -1: /nWhat are you doing here? /nDon't life in the past!";
-
+                Infopage--;
                 break;
             case 7://weiter
                 //Seitenumschalten vorwärts
-                Infotext.text = "Seite 2/n/nMaussteuerung:/nLinke/rechte Maustaste um das Schiff zu steuern/nA und D um Geschütz zu rotieren/n Space um zu schießen";
+                Infopage++;
                 break;
             case 8://Start
                 //Wechsel zu Scene "Playing"
