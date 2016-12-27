@@ -7,18 +7,28 @@ public class PlayerBehaviour : MonoBehaviour {
     private int PlayerNumber=0;
     public bool controller;
     public int playerHP;
+    private Rigidbody rigid;
 	// Use this for initialization
 	void Start () {
         if(controller)
             InputManager.Init(PlayerNumber);
         playerHP = 100;//100 start HP
+        rigid = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        setZero();
         getInput();
+
 	}
 
+    void setZero()
+    {
+        transform.position = new Vector3(transform.position.x, -5f, transform.position.z);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        rigid.velocity = Vector3.zero;
+    }
     void getInput()
     {
         float in1, in2;

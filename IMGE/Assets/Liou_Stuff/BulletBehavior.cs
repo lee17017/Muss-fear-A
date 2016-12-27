@@ -28,5 +28,12 @@ public class BulletBehavior : MonoBehaviour {
             GameObject temp = (GameObject) Instantiate(explosion);
             Destroy(temp, 2);
         }
+        else if (col.transform.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+
+            //Explosion
+          
+        }
     }
 }
