@@ -1,7 +1,11 @@
 ﻿
 using UnityEngine;
 using System.Collections;
-
+/*My Changes (Oliver)
+ * Einbinden von StateUpdater:
+ * -Start
+ * -TakeDamage
+ */
 
 public class PlayerBehaviour : MonoBehaviour {
     private int PlayerNumber=0;
@@ -14,6 +18,9 @@ public class PlayerBehaviour : MonoBehaviour {
             InputManager.Init(PlayerNumber);
         playerHP = 100;//100 start HP
         rigid = GetComponent<Rigidbody>();
+
+        //Changed
+        StateUpdater.setLife(playerHP);
 	}
 	
 	// Update is called once per frame
@@ -85,6 +92,8 @@ public class PlayerBehaviour : MonoBehaviour {
             Debug.Log(playerHP);
         else
             Debug.Log("DEAD");
+        //Changed
+        StateUpdater.UpdateLife(-5);
     }
 
     void OnTriggerEnter(Collider col)

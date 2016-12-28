@@ -43,7 +43,7 @@ public class CannonBehavior : MonoBehaviour {
             reloadTimer = 0;
             actMun++;
             //Olivers Part
-            StateUpdater.UpdateStats(0, 1, 0);//Oder mit Button -> Refill all
+            StateUpdater.UpdateMunition(1);//Oder mit Button -> Refill all
             //
         }
         float curLocRot = transform.localRotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
@@ -75,7 +75,7 @@ public class CannonBehavior : MonoBehaviour {
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.Euler(90f, curRot, 0f));
 
                 //Olivers Part
-                StateUpdater.UpdateStats(0, -1, 0);
+                StateUpdater.UpdateMunition(-1);
                 //
             }
         }
