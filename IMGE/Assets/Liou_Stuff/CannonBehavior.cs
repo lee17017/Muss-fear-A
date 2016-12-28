@@ -63,9 +63,10 @@ public class CannonBehavior : MonoBehaviour {
             //Rotation der Kanone in einem Bereich
             float tmp = Input.GetAxis("Horizontal");          
 
-            if ((tmp > 0 && (curLocRot < 180 - deadAngle || curLocRot > 180)) || (tmp < 0 && (curLocRot > 180 + deadAngle || curLocRot < 180)))
+            if ((tmp > 0 && curLocRot < 360 - deadAngle) || (tmp < 0 && curLocRot > deadAngle))
                 transform.Rotate(new Vector3(0, tmp, 0) * Time.deltaTime * rotateSpeed);
 
+            
 
             //Schießen
             if (Input.GetKey("space") && shootTimer <= 0 && actMun > 0) // muss zu GetKeyDown werden aber so ist grad lustiger
