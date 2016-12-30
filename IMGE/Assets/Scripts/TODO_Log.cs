@@ -28,5 +28,22 @@
      * -
      * -
     */
-    
+    //Menu
+    /*-Canvas (MenuScr + EventScr + Buttons())
+     *-Ship (ShipBehaviour)
+     *-Positions
+     *-
+     * 
+     * 
+     * 
+    //Playing
+     *-Canvas (StateUpdater + EventSys + PauseMenü + Anzeigen)
+     *-Spielerschiff(PlayerScr + Canon (CanonScr))
+     *-
+     * 
+     * 
+     * 
+    //Endszene
+     * 
+     */
 }
