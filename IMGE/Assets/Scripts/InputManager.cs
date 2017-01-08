@@ -35,7 +35,6 @@ public static class InputManager {
         float zahl;
         string[] parts = recData.Split(' ');
         zahl = (System.Convert.ToInt32(parts[regler], 16));
-
         if (player == 0)
             zahl = (zahl * maxPow) / max;
         else if (player == 1)

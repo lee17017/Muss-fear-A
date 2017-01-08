@@ -44,17 +44,17 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             
            if (Input.GetButton("Fire1"))
-                in2 = 3;
+                in1 = -3;
 
            if (Input.GetButton("Fire2"))
-                in1 = 3;
+                in2 = -3;
 
             //Kontrollersteuerung
         }
         else
         {
-            in1 = InputManager.Analog(PlayerNumber, 4);
-            in2 = InputManager.Analog(PlayerNumber, 3);
+            in2 = -InputManager.Analog(PlayerNumber, 4);
+            in1 = -InputManager.Analog(PlayerNumber, 3);
         }
         
         //Ausführung

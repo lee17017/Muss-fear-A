@@ -61,9 +61,9 @@ public class CannonBehavior : MonoBehaviour {
         else
         {
             //Rotation der Kanone in einem Bereich
-            float tmp = Input.GetAxis("Horizontal");          
-
-            if ((tmp > 0 && curLocRot < 360 - deadAngle) || (tmp < 0 && curLocRot > deadAngle))
+            float tmp = Input.GetAxis("Horizontal");
+            
+            if ((tmp > 0 && (curLocRot < 180 - deadAngle || curLocRot > 180)) || (tmp < 0 && (curLocRot > 180 + deadAngle || curLocRot < 180)))
                 transform.Rotate(new Vector3(0, tmp, 0) * Time.deltaTime * rotateSpeed);
 
             
