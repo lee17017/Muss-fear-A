@@ -52,11 +52,24 @@ public class CannonBehavior : MonoBehaviour {
         if (controller)
         {
             //Rotieren
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, InputManager.Analog(playerNr,1),0), Time.time);
+            Quaternion newAnlge = Quaternion.Euler(0, InputManager.Analog(playerNr, 1), 0);
+            Quaternion actAngle = transform.localRotation;
+			
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, newAnlge, Time.time*0.5f);
+			
+
 
             //Schießen
-            if(InputManager.Pressed(playerNr,3))
+            if (InputManager.Pressed(playerNr, 3) && shootTimer <= 0 && actMun > 0)
+            {
+                shootTimer = shootCD;
+                actMun--;
+
+                //Olivers Part
+                StateUpdater.UpdateMunition(-1);
+                //
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.Euler(90f, curRot, 0f));
+            }
         }
         else
         {

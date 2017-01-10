@@ -2,11 +2,11 @@
 using System.Collections;
 using System.IO.Ports;
 public static class InputManager {
-    public static SerialPort[] stream = {new SerialPort("COM4", 115200), new SerialPort("COM5", 115200) };
+    public static SerialPort[] stream = {new SerialPort("COM3", 115200), new SerialPort("COM4", 115200) };
     
     private static string recData = "";
     private static float winkel = 150;
-    private static float maxPow=10;
+    private static float maxPow=5;
     private static int max = 4095;
     private static int[] masks = new int[] { 0x40, 0x80, 0x100, 0x200, 0x400, 0x800 };
 
@@ -36,10 +36,12 @@ public static class InputManager {
         string[] parts = recData.Split(' ');
         zahl = (System.Convert.ToInt32(parts[regler], 16));
         if (player == 0)
-            zahl = (zahl * maxPow) / max;
+        {
+            zahl = (int)((zahl * maxPow) / max *10)/10.0f;
+        }
         else if (player == 1)
         {
-            zahl = -(((zahl * 2 * winkel) / max) - winkel);
+            zahl = -(int)((((zahl * 2 * winkel) / max) - winkel));
 
         }
         

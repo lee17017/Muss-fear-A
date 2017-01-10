@@ -32,9 +32,10 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void setZero()
     {
+		rigid.velocity = Vector3.zero;
+		rigid.angularVelocity = Vector3.zero;
         transform.position = new Vector3(transform.position.x, -5f, transform.position.z);
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        rigid.velocity = Vector3.zero;
     }
     void getInput()
     {
