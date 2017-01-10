@@ -54,8 +54,14 @@ public class CannonBehavior : MonoBehaviour {
             //Rotieren
             Quaternion newAnlge = Quaternion.Euler(0, InputManager.Analog(playerNr, 1), 0);
             Quaternion actAngle = transform.localRotation;
-			
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, newAnlge, Time.time*0.5f);
+            float act = actAngle.eulerAngles.y;
+            float neu = newAnlge.eulerAngles.y;
+            if(act > 180 && act < 271 && neu < 180 && neu > 89)
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act + 179 - 360), 0), Time.time * 0.5f);
+            else if (act < 180 && act > 89 && neu > 180 && neu < 271)
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act - 179 + 360), 0), Time.time * 0.5f);
+            else 
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, newAnlge, Time.time*0.5f);
 			
 
 
