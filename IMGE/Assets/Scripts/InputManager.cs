@@ -13,6 +13,7 @@ public static class InputManager {
 
     public static void Init()
     {
+
         Init(0);
         Init(1);
     }
@@ -22,6 +23,8 @@ public static class InputManager {
         if (!stream[player].IsOpen)
         {
             stream[player].Open();
+            outLED(player);
+            setLED(player, 1);
             Debug.Log("Opened"+player);
         }
     }
@@ -57,8 +60,24 @@ public static class InputManager {
         stream[player].Write("1");
         int buttonVal = System.Convert.ToInt32(stream[player].ReadLine(), 16);
         return ((masks[button - 1] & buttonVal) != 0);
-
-
     }
-  
+
+    public static void setLED(int player, int stat)
+    {
+        string text = "l " + player + " " + stat + "\r\n";
+        stream[player].Write(text);
+        stream[player].ReadLine();
+    }
+
+    public static void outLED(int player)
+    {
+        
+            for (int i = 0; i < 4; i++)
+            {
+                stream[player].Write("l " + i + " 0\r\n");
+                stream[player].ReadLine();
+            }
+        
+    }
+
 }

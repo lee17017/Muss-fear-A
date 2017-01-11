@@ -89,9 +89,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public void takeDamage(int damage)
     {
         playerHP -= damage;
-        if (playerHP > 0)
-            Debug.Log(playerHP);
-        else
+        if (playerHP <= 0)
             Debug.Log("DEAD");
         //Changed
         StateUpdater.UpdateLife(-5);
@@ -105,5 +103,15 @@ public class PlayerBehaviour : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
+    }
+
+    void OnApplicationQuit()
+    {
+        if (controller)
+        {
+            InputManager.outLED(0);
+            InputManager.outLED(1);
+        }
+        Debug.Log("QUIT");
     }
 }

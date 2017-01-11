@@ -15,9 +15,10 @@ public class CannonBehavior : MonoBehaviour {
     public float deadAngle=40f;
     public GameObject bullet;
     public int maxMun = 30, actMun;
-    public float shootCD = 0.5f, reloadCD = 2;
-
-    private float shootTimer = 0, reloadTimer=0;
+    private bool reloading = false;
+    public float shootCD = 0.5f, reloadCD = 2, pressReloadCD = 10;
+    
+    private float shootTimer = 0, reloadTimer=0, pressReloadTimer =0;
     private GameObject bulletSpawnPoint;
     private int playerNr = 1;//2.Player
 
@@ -46,6 +47,26 @@ public class CannonBehavior : MonoBehaviour {
             StateUpdater.UpdateMunition(1);//Oder mit Button -> Refill all
             //
         }
+
+
+        //Per Knopfdruck reloaden
+        if (reloading)
+        {
+            if (pressReloadTimer > pressReloadCD)
+            {
+                Debug.Log("Reload Complete");
+
+                int diff = maxMun - actMun;
+                StateUpdater.UpdateMunition(diff);
+                reloading = false;
+                actMun = maxMun;
+                pressReloadTimer = 0;
+            }
+            else
+                pressReloadTimer += Time.deltaTime;
+        }
+
+        
         float curLocRot = transform.localRotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
         float curRot = transform.rotation.eulerAngles.y; // absolute rotation für instantiation
 
@@ -56,17 +77,17 @@ public class CannonBehavior : MonoBehaviour {
             Quaternion actAngle = transform.localRotation;
             float act = actAngle.eulerAngles.y;
             float neu = newAnlge.eulerAngles.y;
-            if(act > 180 && act < 271 && neu < 180 && neu > 89)
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act + 179 - 360), 0), Time.time * 0.5f);
-            else if (act < 180 && act > 89 && neu > 180 && neu < 271)
-                    transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act - 179 + 360), 0), Time.time * 0.5f);
+            if(act > 180 && act < 330 && neu < 180 && neu > 50)
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act + 160 - 360), 0), Time.deltaTime * rotateSpeed);
+            else if (act < 180 && act > 30 && neu > 180 && neu < 310)
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, (act - 160 + 360), 0), Time.deltaTime * rotateSpeed);
             else 
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, newAnlge, Time.time*0.5f);
-			
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, newAnlge, Time.deltaTime * rotateSpeed);
+
 
 
             //Schießen
-            if (InputManager.Pressed(playerNr, 3) && shootTimer <= 0 && actMun > 0)
+            if (InputManager.Pressed(playerNr, 3) && shootTimer <= 0 && actMun > 0 && !reloading)
             {
                 shootTimer = shootCD;
                 actMun--;
@@ -75,6 +96,12 @@ public class CannonBehavior : MonoBehaviour {
                 StateUpdater.UpdateMunition(-1);
                 //
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.Euler(90f, curRot, 0f));
+            }
+            else if ((InputManager.Pressed(playerNr, 4) && !reloading))
+            {
+                int diff = maxMun - actMun;
+                reloading = true;
+                StateUpdater.UpdateMunition(diff);
             }
         }
         else
@@ -88,7 +115,7 @@ public class CannonBehavior : MonoBehaviour {
             
 
             //Schießen
-            if (Input.GetKey("space") && shootTimer <= 0 && actMun > 0) // muss zu GetKeyDown werden aber so ist grad lustiger
+            if (Input.GetKey("space") && shootTimer <= 0 && actMun > 0 && !reloading) // muss zu GetKeyDown werden aber so ist grad lustiger
             {
                 shootTimer = shootCD;
                 actMun--;
@@ -97,6 +124,11 @@ public class CannonBehavior : MonoBehaviour {
                 //Olivers Part
                 StateUpdater.UpdateMunition(-1);
                 //
+            }
+            else if (Input.GetKey("r") && !reloading)
+            {
+                reloading = true;
+                Debug.Log("Start Reloading");
             }
         }
     }
