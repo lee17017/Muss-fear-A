@@ -66,6 +66,34 @@ public class MainMenu : MonoBehaviour {
                     break;
             }
         }
+        //Controllersteuerung
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        {
+            //Bei Oben-Button in Spalte/Reihe zurück wechseln (mit Moduloswap)
+            //CurserPosition--;
+        }
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        {
+            //Bei Unten-Button in Spalte/Reihe weiter wechseln (mit Moduloswap)
+            //CurserPosition++;
+        }
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        {
+            //Bei Links-Button auf Zurück gehen
+            //
+        }
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        {
+            //Bei Rechts-Button auf Weiter gehen
+            //
+        }
+
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        {
+            //Durch Bestätigungs-Button ausführen
+            //MainButtons(xy);
+        }
+        //Visualisierung anpassen
 	}
 
     public void MainButtons(int ButtonID)
@@ -80,6 +108,7 @@ public class MainMenu : MonoBehaviour {
             Options.gameObject.SetActive(false);
             Return.gameObject.SetActive(true);
         }
+        //Controllersteuerung Seitenstartpunkt setzen (Play/Zurück)                                     !!!!!
         
         switch (ButtonID)//Entsprechende Buttons/Bilder freischalten
         {
@@ -156,8 +185,5 @@ public class MainMenu : MonoBehaviour {
                 Application.Quit();
                 break;
         }
-        
-        
-        
     }
 }

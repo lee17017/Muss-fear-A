@@ -44,9 +44,7 @@ public class ShipBehaviour : MonoBehaviour {
 
     IEnumerator SwitchPos()
     {
-        Debug.Log("Position umschalten...");
         yield return new WaitForSeconds(8);
-        Debug.Log("Position umgeschalten");
         Ziel = nextZiel;
         nextZiel = GameObject.Find("Position" + (Zielcounter % 10)).transform.position;
         Zielcounter++;
