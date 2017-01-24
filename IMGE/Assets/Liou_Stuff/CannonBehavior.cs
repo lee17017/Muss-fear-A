@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /*Änderungen von Oliver in:
  * Start()
  * Update() -> Schießen
@@ -17,7 +18,8 @@ public class CannonBehavior : MonoBehaviour {
     public int maxMun = 30, actMun;
     private bool reloading = false;
     public float shootCD = 0.5f, reloadCD = 2, pressReloadCD = 10;
-    
+    public GameObject rTXT;
+    private Text reloadTxt;
     private float shootTimer = 0, reloadTimer=0, pressReloadTimer =0;
     private GameObject bulletSpawnPoint;
     private int playerNr = 1;//2.Player
@@ -28,6 +30,8 @@ public class CannonBehavior : MonoBehaviour {
         if(controller)
             InputManager.Init(playerNr);
 
+
+        reloadTxt = rTXT.GetComponent<Text>();
         //Olivers Part
         StateUpdater.setMunition(maxMun);
         //
@@ -39,7 +43,7 @@ public class CannonBehavior : MonoBehaviour {
         if (actMun < 30)
             reloadTimer += Time.deltaTime;
 
-        if(reloadTimer>reloadCD)
+      /*  if(reloadTimer>reloadCD)
         {
             reloadTimer = 0;
             actMun++;
@@ -47,24 +51,9 @@ public class CannonBehavior : MonoBehaviour {
             StateUpdater.UpdateMunition(1);//Oder mit Button -> Refill all
             //
         }
+        */
 
-
-        //Per Knopfdruck reloaden
-        if (reloading)
-        {
-            if (pressReloadTimer > pressReloadCD)
-            {
-                Debug.Log("Reload Complete");
-
-                int diff = maxMun - actMun;
-                StateUpdater.UpdateMunition(diff);
-                reloading = false;
-                actMun = maxMun;
-                pressReloadTimer = 0;
-            }
-            else
-                pressReloadTimer += Time.deltaTime;
-        }
+ 
 
         
         float curLocRot = transform.localRotation.eulerAngles.y; // EulerAngles gehn von 0 bis 360 => -0 bis -180 wird auf 360 bis 180 gemapp
@@ -99,9 +88,7 @@ public class CannonBehavior : MonoBehaviour {
             }
             else if ((InputManager.Pressed(playerNr, 4) && !reloading))
             {
-                int diff = maxMun - actMun;
-                reloading = true;
-                StateUpdater.UpdateMunition(diff);
+                StartCoroutine("reload");
             }
         }
         else
@@ -127,9 +114,20 @@ public class CannonBehavior : MonoBehaviour {
             }
             else if (Input.GetKey("r") && !reloading)
             {
-                reloading = true;
-                Debug.Log("Start Reloading");
+                StartCoroutine("reload");
             }
         }
+    }
+
+    IEnumerator reload()
+    {
+        reloading = true;
+        reloadTxt.text = "Reloading";
+        yield return new WaitForSeconds(pressReloadCD);
+        reloadTxt.text = "";
+        int diff = maxMun - actMun;
+        StateUpdater.UpdateMunition(diff);
+        reloading = false;
+        actMun = maxMun;
     }
 }
