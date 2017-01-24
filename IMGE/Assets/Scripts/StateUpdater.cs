@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StateUpdater : MonoBehaviour{
+public static class StateUpdater{
     /*Gebrauch:
      * Speichert Werte wie HP und Munition
      * Updatet davon abhängig die Anzeigen am Bildschirm
@@ -18,23 +18,13 @@ public class StateUpdater : MonoBehaviour{
     private static Image Munition;
     private static Text Score;
 
-	// Use this for initialization
-	void Start () {
-		//Einstellen von Anzeigen (wäre hier schöner)
-        
-        //Test
-        //test();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //test2();
-	}
+
 
     //---------------------------------------------------------------------------------Setter-------------------------------------------------------------------------------
 
     public static void setMunition(int muni){
         Munition = GameObject.Find("Bullet-State-IMG").GetComponent<Image>();
+       
         UpdateMunition(muni-munition);
     }
     public static void setLife(int LifeMax)
@@ -50,6 +40,7 @@ public class StateUpdater : MonoBehaviour{
     }
 
     //----------------------------------------------------------------------------------------Update-Methoden----------------------------------------------------------------------
+
 
     public static void UpdateMunition(int deltaMunition)
     {
