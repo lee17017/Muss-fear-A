@@ -67,28 +67,29 @@ public class MainMenu : MonoBehaviour {
             }
         }
         //Controllersteuerung
+        //1 Help 2 Optionen 3 Singleplayer 4 Multiplayer 5 Return 6 zurück 7 weiter 8 start d quit
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
         {
             //Bei Oben-Button in Spalte/Reihe zurück wechseln (mit Moduloswap)
             //CurserPosition--;
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
         {
             //Bei Unten-Button in Spalte/Reihe weiter wechseln (mit Moduloswap)
             //CurserPosition++;
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 3))//Welche genau muss ausprobiert werden
         {
             //Bei Links-Button auf Zurück gehen
             //
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 4))//Welche genau muss ausprobiert werden
         {
             //Bei Rechts-Button auf Weiter gehen
             //
         }
 
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 5))//Welche genau muss ausprobiert werden
         {
             //Durch Bestätigungs-Button ausführen
             //MainButtons(xy);

@@ -6,6 +6,7 @@ public class ShipBehaviour : MonoBehaviour {
     private Vector3 nextZiel;
     private int Zielcounter = 2;
     private GameObject CameraBase;
+    float CamAngle = 60;
     bool change=true;
 
 	// Use this for initialization
@@ -40,6 +41,23 @@ public class ShipBehaviour : MonoBehaviour {
     {
         //Camerabewegung
         CameraBase.transform.LookAt(gameObject.transform);
+        if(Vector3.Distance(gameObject.transform.position,CameraBase.transform.position)>70){
+            if (CamAngle > 30)
+            {
+                CamAngle -= 0.5f;
+                Camera.main.transform.GetComponent<Camera>().fieldOfView = CamAngle;
+
+            }
+            
+        }
+        else
+        {
+            if (CamAngle < 60)
+            {
+                CamAngle += 0.5f;
+                Camera.main.transform.GetComponent<Camera>().fieldOfView = CamAngle;
+            }
+        }
     }
 
     IEnumerator SwitchPos()
