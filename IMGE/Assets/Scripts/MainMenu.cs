@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour {
     public Toggle ShipControl;
     public Toggle CanonControl;
     private int Infopage;
-    private int selection=5;
+    private int selection=4;
 
 
 	// Use this for initialization
@@ -69,11 +69,9 @@ public class MainMenu : MonoBehaviour {
             }
         }
         //Controllersteuerung
-        //1 Help 2 Optionen 3 Singleplayer 4 Multiplayer 5 Return 6 zurück 7 weiter 8 start d quit
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welcher genau muss ausprobiert werden
         {
-            //Bei Oben-Button in Spalte/Reihe zurück wechseln (mit Moduloswap)
-            //CurserPosition--;
+            //Bei Oben-Button in Reihe zurück wechseln
             if (Singleplayer.IsActive() == true)
             {
                 //Cursor neben Singleplayer setzen
@@ -83,20 +81,16 @@ public class MainMenu : MonoBehaviour {
             }
             else
             {
-                //Cursor um Delta nach oben verschieben
-                if (selection > 5)//Zweite Levelreihe (falls Reihe 4 lang)
-                {
-                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
-                    selection -= 5;//Aktueller Punkt - Reihe+1(da 5 der Returnbutton ist)
-                }
-                
+                //Cursor verschieben
+                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                selection += 4;
+                selection %= 8;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection/4) * 60, 0);
             }
         }
-        if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welcher genau muss ausprobiert werden
         {
-            //Bei Unten-Button in Spalte/Reihe weiter wechseln (mit Moduloswap)
-            //CurserPosition++;
+            //Bei Unten-Button in Reihe weiter wechseln
             if (Quit.IsActive() == true)
             {
                 //Cursor neben Quit setzen
@@ -106,29 +100,41 @@ public class MainMenu : MonoBehaviour {
             }
             else
             {
-                //Cursor um Delta nach unten verschieben
+                //Cursor verschieben
+                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                selection += 4;
+                selection %= 8;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
             }
         }
-        if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welcher genau muss ausprobiert werden
         {
             //Bei Links-Button auf Zurück gehen
             //
             if (!Singleplayer.IsActive() == true)
             {
-                //Cursor um Delta nach Links verschieben
+                //Cursor verschieben
+                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                selection += 1;
+                selection %= 8;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
             }
         }
-        if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welcher genau muss ausprobiert werden
         {
             //Bei Rechts-Button auf Weiter gehen
             //
             if (!Singleplayer.IsActive() == true)
             {
-                //Cursor um Delta nach Links verschieben
+                //Cursor verschieben
+                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                selection += 7;
+                selection %= 8;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
             }
         }
 
-        if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welcher genau muss ausprobiert werden
         {
             //Durch Bestätigungs-Button ausführen
             //MainButtons(xy);
@@ -139,6 +145,16 @@ public class MainMenu : MonoBehaviour {
             else
             {
                 Application.LoadLevel(selection);
+            }
+        }
+
+        if (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))//Welcher genau muss ausprobiert werden
+        {
+            //Durch Return-Button zurückkehren
+            //MainButtons(xy);
+            if (!Singleplayer.IsActive() == true)
+            {
+                MainButtons(5);
             }
         }
 	}
@@ -156,7 +172,6 @@ public class MainMenu : MonoBehaviour {
             Return.gameObject.SetActive(true);
         }
         //Controllersteuerung Seitenstartpunkt setzen (Play/Zurück)
-        selection = 5;
         
         switch (ButtonID)//Entsprechende Buttons/Bilder freischalten
         {
@@ -186,20 +201,22 @@ public class MainMenu : MonoBehaviour {
             case 4://Levelauswahl
                 //Player1 auf Position setzen
                 //Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 75, 0);
-
+                selection = 0;
                 //Images aktivieren
                 Player1.gameObject.SetActive(true);
                 Player2.gameObject.SetActive(true);
                 Player3.gameObject.SetActive(true);
                 Player4.gameObject.SetActive(true);
-                start.gameObject.SetActive(true);
+                //start.gameObject.SetActive(true);
                 //Marker setzen
-                Vector2 tmp = Return.GetComponent<RectTransform>().localPosition;
+                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
                 ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
+                ConCursor.GetComponent<RectTransform>().sizeDelta = new Vector2(110, 104);
                 selection = 4;
                 break;
             case 5://Return
                 //Zu Main wechseln
+                selection = 3;
                 //Rausgenommen: Multiplayer.gameObject.SetActive(true);
                 Singleplayer.gameObject.SetActive(true);
                 //Help.gameObject.SetActive(true);
@@ -224,6 +241,7 @@ public class MainMenu : MonoBehaviour {
                 //Marker setzen
                 Vector2 tmp1 = Singleplayer.GetComponent<RectTransform>().localPosition;
                 ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp1.x, tmp1.y, 0);
+                ConCursor.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 34);
                 selection = 4;
                 break;
             //case 6:     //Zurück    //Seitenumschalten rückwärts    Infopage--;     break;
