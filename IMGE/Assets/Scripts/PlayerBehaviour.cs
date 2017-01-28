@@ -1,6 +1,8 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+
+using UnityEngine.UI;
 /*My Changes (Oliver)
  * Einbinden von StateUpdater:
  * -Start
@@ -13,6 +15,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public int playerHP;
     private Rigidbody rigid;
     public bool playing = false;
+    public Text text;
 	// Use this for initialization
 	void Start () {
         if(controller)
@@ -39,12 +42,17 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void checkZero()
     {
+        text.text = "Setzte Getriebe auf 0";
         float in1, in2;
         in1 = in2 = 0;
         in2 = -InputManager.Analog(PlayerNumber, 4);
         in1 = -InputManager.Analog(PlayerNumber, 3);
-        if (in1 < 0.2f && in2 < 0.2f)
+        Debug.Log("" + in1 + " - " + in2);
+        if (in1 > -0.2f && in2 > -0.2f)
+        {
+            text.text = "";
             playing = true;
+        }
     }
     void setZero()
     {
@@ -72,8 +80,10 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             in2 = -InputManager.Analog(PlayerNumber, 4);
             in1 = -InputManager.Analog(PlayerNumber, 3);
-            if (in1 < 0.2f && in2 < 0.2f)
+            if (in1 >- 0.2f && in2 > -0.2f)
                 return;
+            if (in1 < -4.9 && in2 < -4.9)
+                in1 = in2 = -5;
         }
         
         //Ausführung
@@ -128,7 +138,6 @@ public class PlayerBehaviour : MonoBehaviour {
         if (controller)
         {
             InputManager.outLED(0);
-            InputManager.outLED(1);
         }
         Debug.Log("QUIT");
     }

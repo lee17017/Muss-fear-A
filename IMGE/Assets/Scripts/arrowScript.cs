@@ -17,7 +17,6 @@ public class arrowScript : MonoBehaviour {
 	void Update () {
         float dX = x - player.transform.position.x;
         float dZ = z - player.transform.position.z;
-        Debug.Log(dX); Debug.Log(dZ);
 
         float temp = Mathf.Atan(dZ / dX) / Mathf.PI * 180;
         if (dX > 0)
