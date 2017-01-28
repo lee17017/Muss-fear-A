@@ -48,14 +48,17 @@ public class AsteroidSpawner : MonoBehaviour {
     IEnumerator spawnOrbit()
     {
         orbit = false;
-        for (int i = 0; i < 14; i++)
+        for (int i = 0; i < 12; i++)
         {
             Vector3 checkPoit = checkPoints[player.GetComponent<PlayerBehaviour>().checkPointNr].transform.position;
             GameObject temp = Instantiate(orbitAst);
             temp.transform.position = checkPoit;
             temp.transform.GetComponent<AsteroidOrbit>().HP++;
-            yield return new WaitForSeconds(0.2f);
-            
+            for (int j = 0; j < 15; j++)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
         }
     }
     // Update is called once per frame

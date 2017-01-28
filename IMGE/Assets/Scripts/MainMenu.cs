@@ -27,10 +27,11 @@ public class MainMenu : MonoBehaviour {
     public Toggle CanonControl;
     private int Infopage;
     private int selection=4;
-
+    private float timer = 1.0f;
 
 	// Use this for initialization
 	void Start () {
+        InputManager.Init();
         //Alles voreingestellt...
         //Multiplayer.gameObject.SetActive(true);//Multiplayer aktivieren
         //Singleplayer.gameObject.SetActive(true);//Singleplayer aktivieren
@@ -48,6 +49,7 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timer -= Time.deltaTime;
         if (Infotext.IsActive()==true)
         {
             switch (Infopage)
@@ -77,93 +79,102 @@ public class MainMenu : MonoBehaviour {
 
     private void checkConInputs()
     {
-        //Controllersteuerung
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welcher genau muss ausprobiert werden
+        if (timer < 0)
         {
-            //Bei Oben-Button in Reihe zurück wechseln
-            if (Singleplayer.IsActive() == true)
+            //Controllersteuerung
+            if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welcher genau muss ausprobiert werden
             {
-                //Cursor neben Singleplayer setzen
-                Vector2 tmp = Singleplayer.GetComponent<RectTransform>().localPosition;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
-                selection = 4;
+                timer =0.2f;
+                //Bei Oben-Button in Reihe zurück wechseln
+                if (Singleplayer.IsActive() == true)
+                {
+                    //Cursor neben Singleplayer setzen
+                    Vector2 tmp = Singleplayer.GetComponent<RectTransform>().localPosition;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
+                    selection = 4;
+                }
+                else
+                {
+                    //Cursor verschieben
+                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                    selection += 4;
+                    selection %= 8;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                }
             }
-            else
+            if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welcher genau muss ausprobiert werden
             {
-                //Cursor verschieben
-                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 4;
-                selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                timer =0.2f;
+                //Bei Unten-Button in Reihe weiter wechseln
+                if (Quit.IsActive() == true)
+                {
+                    //Cursor neben Quit setzen
+                    Vector2 tmp = Quit.GetComponent<RectTransform>().localPosition;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
+                    selection = 0;
+                }
+                else
+                {
+                    //Cursor verschieben
+                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                    selection += 4;
+                    selection %= 8;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                }
             }
-        }
-        if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welcher genau muss ausprobiert werden
-        {
-            //Bei Unten-Button in Reihe weiter wechseln
-            if (Quit.IsActive() == true)
+            if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welcher genau muss ausprobiert werden
             {
-                //Cursor neben Quit setzen
-                Vector2 tmp = Quit.GetComponent<RectTransform>().localPosition;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
-                selection = 0;
+                timer =0.2f;
+                //Bei Links-Button auf Zurück gehen
+                //
+                if (!Singleplayer.IsActive() == true)
+                {
+                    //Cursor verschieben
+                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                    selection += 7;
+                    selection %= 8;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                }
             }
-            else
+            if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welcher genau muss ausprobiert werden
             {
-                //Cursor verschieben
-                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 4;
-                selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                timer =0.2f;
+                //Bei Rechts-Button auf Weiter gehen
+                //
+                if (!Singleplayer.IsActive() == true)
+                {
+                    //Cursor verschieben
+                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                    selection += 1;
+                    selection %= 8;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
+                }
             }
-        }
-        if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welcher genau muss ausprobiert werden
-        {
-            //Bei Links-Button auf Zurück gehen
-            //
-            if (!Singleplayer.IsActive() == true)
-            {
-                //Cursor verschieben
-                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 7;
-                selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
-            }
-        }
-        if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welcher genau muss ausprobiert werden
-        {
-            //Bei Rechts-Button auf Weiter gehen
-            //
-            if (!Singleplayer.IsActive() == true)
-            {
-                //Cursor verschieben
-                Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 1;
-                selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
-            }
-        }
 
-        if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welcher genau muss ausprobiert werden
-        {
-            //Durch Bestätigungs-Button ausführen
-            //MainButtons(xy);
-            if (Singleplayer.IsActive() == true)
+            if (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))//Welcher genau muss ausprobiert werden
             {
-                MainButtons(selection);
+                timer =0.2f;
+                //Durch Bestätigungs-Button ausführen
+                //MainButtons(xy);
+                if (Singleplayer.IsActive() == true)
+                {
+                    MainButtons(selection);
+                }
+                else
+                {
+                    Application.LoadLevel(selection);
+                }
             }
-            else
-            {
-                Application.LoadLevel(selection);
-            }
-        }
 
-        if (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))//Welcher genau muss ausprobiert werden
-        {
-            //Durch Return-Button zurückkehren
-            //MainButtons(xy);
-            if (!Singleplayer.IsActive() == true)
+            if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welcher genau muss ausprobiert werden
             {
-                MainButtons(5);
+                timer =0.2f;
+                //Durch Return-Button zurückkehren
+                //MainButtons(xy);
+                if (!Singleplayer.IsActive() == true)
+                {
+                    MainButtons(5);
+                }
             }
         }
     }
