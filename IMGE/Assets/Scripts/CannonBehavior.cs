@@ -76,7 +76,7 @@ public class CannonBehavior : MonoBehaviour {
 
 
             //Schießen
-            if (InputManager.Pressed(playerNr, 3) && shootTimer <= 0 && actMun > 0 && !reloading)
+            if (InputManager.Pressed(playerNr, 2) && shootTimer <= 0 && actMun > 0 && !reloading)
             {
                 shootTimer = shootCD;
                 actMun--;
