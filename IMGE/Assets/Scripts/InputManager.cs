@@ -1,32 +1,50 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.IO.Ports;
-public static class InputManager {
-    public static SerialPort[] stream = {new SerialPort("COM3", 115200), new SerialPort("COM4", 115200) };
+    using System.Collections;
+    using System.IO.Ports; 
+public static class InputManager{
+    public static SerialPort[] stream = {new SerialPort("COM0", 115200), new SerialPort("COM0", 115200) };
     
     private static string recData = "";
     private static float winkel = 150;
     private static float maxPow=5;
     private static int max = 4095;
+    
     private static int[] masks = new int[] { 0x40, 0x80, 0x100, 0x200, 0x400, 0x800 };
 
 
-    public static void Init()
+    public static bool Init()
     {
 
-        Init(0);
-        Init(1);
+        return Init(0) && Init(1);
     }
 
-    public static void Init(int player)
+    public static bool Init(int player)
     {
-        if (!stream[player].IsOpen)
+        int cnt = 0;
+        bool exc = true;
+        while (exc && cnt < 10)
         {
-            stream[player].Open();
-            outLED(player);
-            setLED(player, 1);
-            Debug.Log("Opened"+player);
+            try
+            {
+                exc = false;
+                if (!stream[player].IsOpen)
+                {
+                    stream[player].Open();
+                    outLED(player);
+                    setLED(player, 1);
+                    Debug.Log("Opened" + player);
+                }
+            }
+            catch (System.Exception e)
+            {
+                exc = true;
+                stream[player] = new SerialPort("COM" + cnt, 115200);
+                cnt++;
+                Debug.Log("ADFSDf" + player);
+            }
         }
+        return !exc;
+        
     }
 
 

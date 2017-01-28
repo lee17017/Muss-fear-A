@@ -15,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if(controller)
-            InputManager.Init(PlayerNumber);
+            controller = InputManager.Init(PlayerNumber);
         playerHP = 100;//100 start HP
         rigid = GetComponent<Rigidbody>();
 

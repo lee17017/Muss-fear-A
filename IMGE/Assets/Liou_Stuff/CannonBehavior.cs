@@ -28,7 +28,7 @@ public class CannonBehavior : MonoBehaviour {
         bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
         actMun = maxMun;
         if(controller)
-            InputManager.Init(playerNr);
+            controller = InputManager.Init(playerNr);
 
 
         reloadTxt = rTXT.GetComponent<Text>();
