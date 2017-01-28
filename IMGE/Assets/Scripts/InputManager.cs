@@ -58,6 +58,7 @@ public static class InputManager{
         if (player == 0)
         {
             zahl = (int)((zahl * maxPow) / max *10)/10.0f;
+            zahl = maxPow - zahl;
         }
         else if (player == 1)
         {

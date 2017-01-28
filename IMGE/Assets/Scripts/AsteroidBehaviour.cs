@@ -11,7 +11,9 @@ public class AsteroidBehaviour : MonoBehaviour {
     // Update is called once per frame
 	void Update () {
         Move();
-	}
+        if (transform.position.x < -1000 || transform.position.x > 1000 || transform.position.z > 1000 || transform.position.z < -1000)
+            Destroy(this.gameObject);
+    }
     
     public void Spawn(float x, float y, float speed)
     {

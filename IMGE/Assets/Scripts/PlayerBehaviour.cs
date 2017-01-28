@@ -78,8 +78,8 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         else
         {
-            in2 = -InputManager.Analog(PlayerNumber, 4);
-            in1 = -InputManager.Analog(PlayerNumber, 3);
+            in1 = -InputManager.Analog(PlayerNumber, 4);
+            in2 = -InputManager.Analog(PlayerNumber, 3);
             if (in1 >- 0.2f && in2 > -0.2f)
                 return;
             if (in1 < -4.9 && in2 < -4.9)

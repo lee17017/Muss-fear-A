@@ -73,8 +73,8 @@ public class AsteroidSpawner : MonoBehaviour {
             if (orbit && player.GetComponent<PlayerBehaviour>().checkPointNr == 4)
             {
                 StartCoroutine("spawnOrbit");
-               
             }
+           
 
         }
         else
