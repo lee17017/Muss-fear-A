@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour {
 
-    private bool normal = true, cp = true;
-    public GameObject asteroid;
+    private bool normal = true, cp = true, orbit = true;
+    public GameObject asteroid, orbitAst;
     public GameObject player;
     public GameObject arrow;
     // Use this for initialization
     private bool start;
+   
     private GameObject[] checkPoints;
 	void Start () {
         checkPoints = arrow.GetComponent<arrowScript>().cps;
@@ -44,14 +45,34 @@ public class AsteroidSpawner : MonoBehaviour {
         yield return new WaitForSeconds(3.0f);
         cp = true;
     }
+    IEnumerator spawnOrbit()
+    {
+        orbit = false;
+        for (int i = 0; i < 14; i++)
+        {
+            Vector3 checkPoit = checkPoints[player.GetComponent<PlayerBehaviour>().checkPointNr].transform.position;
+            GameObject temp = Instantiate(orbitAst);
+            temp.transform.position = checkPoit;
+            temp.transform.GetComponent<AsteroidOrbit>().HP++;
+            yield return new WaitForSeconds(0.2f);
+            
+        }
+    }
     // Update is called once per frame
     void Update () {
         if (start)
         {
             if (normal)
                 StartCoroutine("spawnNormal");
-            else if (cp)
+            if (cp)
                 StartCoroutine("spawnCP");
+
+            if (orbit && player.GetComponent<PlayerBehaviour>().checkPointNr == 4)
+            {
+                StartCoroutine("spawnOrbit");
+               
+            }
+
         }
         else
             start = player.GetComponent<PlayerBehaviour>().playing;
