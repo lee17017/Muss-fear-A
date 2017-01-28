@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour {
     public Image Player2;
     public Image Player3;
     public Image Player4;
+    public Image Player5;
+    public Image Player6;
+    public Image Player7;
+    public Image Player8;
     public Image Info;
     public Image ConCursor;
     public Text Infotext;
@@ -68,6 +72,11 @@ public class MainMenu : MonoBehaviour {
                     break;
             }
         }
+        checkConInputs();//Das immer ganz am Ende lassen oder in lateUpdate
+	}
+
+    private void checkConInputs()
+    {
         //Controllersteuerung
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welcher genau muss ausprobiert werden
         {
@@ -85,7 +94,7 @@ public class MainMenu : MonoBehaviour {
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
                 selection += 4;
                 selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection/4) * 60, 0);
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
             }
         }
         if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welcher genau muss ausprobiert werden
@@ -104,7 +113,7 @@ public class MainMenu : MonoBehaviour {
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
                 selection += 4;
                 selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
             }
         }
         if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welcher genau muss ausprobiert werden
@@ -115,9 +124,9 @@ public class MainMenu : MonoBehaviour {
             {
                 //Cursor verschieben
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 1;
+                selection += 7;
                 selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
             }
         }
         if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welcher genau muss ausprobiert werden
@@ -128,9 +137,9 @@ public class MainMenu : MonoBehaviour {
             {
                 //Cursor verschieben
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
-                selection += 7;
+                selection += 1;
                 selection %= 8;
-                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 60, tmp.y + (selection / 4) * 60, 0);
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
             }
         }
 
@@ -157,8 +166,7 @@ public class MainMenu : MonoBehaviour {
                 MainButtons(5);
             }
         }
-	}
-
+    }
     public void MainButtons(int ButtonID)
     {
         //MainButtons deaktivieren + Return aktivieren
@@ -207,12 +215,15 @@ public class MainMenu : MonoBehaviour {
                 Player2.gameObject.SetActive(true);
                 Player3.gameObject.SetActive(true);
                 Player4.gameObject.SetActive(true);
+                Player5.gameObject.SetActive(true);
+                Player6.gameObject.SetActive(true);
+                Player7.gameObject.SetActive(true);
+                Player8.gameObject.SetActive(true);
                 //start.gameObject.SetActive(true);
                 //Marker setzen
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
                 ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
-                ConCursor.GetComponent<RectTransform>().sizeDelta = new Vector2(110, 104);
-                selection = 4;
+                ConCursor.GetComponent<RectTransform>().sizeDelta = new Vector2(105, 105);
                 break;
             case 5://Return
                 //Zu Main wechseln
@@ -233,6 +244,10 @@ public class MainMenu : MonoBehaviour {
                 Player2.gameObject.SetActive(false);
                 Player3.gameObject.SetActive(false);
                 Player4.gameObject.SetActive(false);
+                Player5.gameObject.SetActive(false);
+                Player6.gameObject.SetActive(false);
+                Player7.gameObject.SetActive(false);
+                Player8.gameObject.SetActive(false);
                 //Info.gameObject.SetActive(false);
                 //Text deaktivieren
                 //Infotext.gameObject.SetActive(false);
