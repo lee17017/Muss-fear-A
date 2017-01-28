@@ -11,11 +11,14 @@ public class Victim : MonoBehaviour {
     private Rigidbody rb;
    
     public UnityEvent createEnemy;
-     
-
+    GameObject trigger;
+    public GameObject enemyPrefab;
+    float xPosition = -16.63f;
+    float yPosition = 1.5f;
+    bool activate = true; 
     void Start()
     {
-        UnityEditor.SceneView.FocusWindowIfItsOpen(typeof(UnityEditor.SceneView));
+        
         rb = GetComponent<Rigidbody>();
     }
 
@@ -34,6 +37,32 @@ public class Victim : MonoBehaviour {
         {
             createEnemy.Invoke();
         }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (transform.position.z < -5) { activate = false; }else
+        {
+            activate = true; 
+        }
+        if ((col.gameObject.tag == "TriggerZone") && activate==true)
+        { 
+            
+
+            Debug.Log("Collsion detected!");  //Get gameObject 
+             trigger = GameObject.FindGameObjectWithTag("TriggerZone");
+            float distance = trigger.transform.position.z - 5;
+            for (int i=0; i<6; i++)
+            {
+                Instantiate(enemyPrefab, new Vector3(xPosition, yPosition, distance), Quaternion.identity);  //Instantiate 5 enemies 
+                if(xPosition >= 32) { xPosition = -16.63f; }
+                xPosition += 6;
+                activate = false;
+            }
+            
+        }
+
+
     }
 
   

@@ -42,7 +42,7 @@ public class SpawnBehaviour : MonoBehaviour {
     {// TODO rand
         float randomOffset = Random.value;
         float spawnX = ((spawnMin + spawnMax) /2) +randomOffset; 
-        Instantiate(enemyPrefab, new Vector3(spawnX, transform.position.y, transform.position.z), Quaternion.identity);
+     //   Instantiate(enemyPrefab, new Vector3(spawnX, transform.position.y, transform.position.z), Quaternion.identity);
 
            
     }

@@ -13,7 +13,7 @@ public class BasicAI : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(target);
+       
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 }
