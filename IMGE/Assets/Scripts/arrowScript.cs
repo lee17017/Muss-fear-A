@@ -5,21 +5,21 @@ using UnityEngine;
 public class arrowScript : MonoBehaviour {
 
     public GameObject player;
-    public GameObject[] goals;
+    public GameObject[] cps;
     private PlayerBehaviour playerScript;
     private float x, z;
     private int max, act;
 	// Use this for initialization
 	void Start () {
         playerScript = player.GetComponent<PlayerBehaviour>();
-        max = goals.Length;
-         x = goals[0].transform.position.x;
-         z = goals[0].transform.position.z;
+        max = cps.Length;
+         x = cps[0].transform.position.x;
+         z = cps[0].transform.position.z;
         act = 0;
         for (int i = 1; i < max; i++)
         {
-            goals[i].GetComponent<Renderer>().enabled = false;
-            goals[i].GetComponent<Collider>().enabled = false;
+            cps[i].GetComponent<Renderer>().enabled = false;
+            cps[i].GetComponent<Collider>().enabled = false;
         }
     }
 	
@@ -28,10 +28,10 @@ public class arrowScript : MonoBehaviour {
         if (playerScript.checkPointNr != act && act < max-1)
         {
             act = playerScript.checkPointNr;
-            goals[act].GetComponent<Renderer>().enabled = true;
-            goals[act].GetComponent<Collider>().enabled = true;
-            x = goals[act].transform.position.x;
-            z = goals[act].transform.position.z;
+            cps[act].GetComponent<Renderer>().enabled = true;
+            cps[act].GetComponent<Collider>().enabled = true;
+            x = cps[act].transform.position.x;
+            z = cps[act].transform.position.z;
         }
         
         float dX = x - player.transform.position.x;

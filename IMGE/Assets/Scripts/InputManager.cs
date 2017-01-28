@@ -2,7 +2,7 @@
     using System.Collections;
     using System.IO.Ports; 
 public static class InputManager{
-    public static SerialPort[] stream = {new SerialPort("COM0", 115200), new SerialPort("COM0", 115200) }; //Coms selbst eintragen wenn Unity sich aufhängt
+    public static SerialPort[] stream = {new SerialPort("COM3", 115200), new SerialPort("COM4", 115200) }; //Coms selbst eintragen wenn Unity sich aufhängt
     
     private static string recData = "";
     private static float winkel = 150;

@@ -25,8 +25,6 @@ public class CannonBehavior : MonoBehaviour {
     private int playerNr = 1;//2.Player
 
 	void Start () {
-        string[] a = System.IO.Ports.SerialPort.GetPortNames();
-        Debug.Log(a[0]);
         bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
         actMun = maxMun;
         if(controller)
