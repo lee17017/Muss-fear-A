@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private Rigidbody rigid;
     public bool playing = false;
     public Text text;
+    public int checkPointNr;
 	// Use this for initialization
 	void Start () {
         if(controller)
@@ -37,7 +38,6 @@ public class PlayerBehaviour : MonoBehaviour {
             getInput();
         else
             checkZero();
-
 	}
 
     void checkZero()
@@ -69,10 +69,10 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             
            if (Input.GetButton("Fire1"))
-                in1 = -3;
+                in1 = -5;
 
            if (Input.GetButton("Fire2"))
-                in2 = -3;
+                in2 = -5;
 
             //Kontrollersteuerung
         }
@@ -130,6 +130,11 @@ public class PlayerBehaviour : MonoBehaviour {
             takeDamage(5);
             Destroy(col.gameObject);
         }
+        else if (col.tag == "CP")
+        {
+            checkPointNr++;
+            Destroy(col.gameObject);
+        }
 
     }
 
@@ -141,4 +146,6 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         Debug.Log("QUIT");
     }
+
+ 
 }

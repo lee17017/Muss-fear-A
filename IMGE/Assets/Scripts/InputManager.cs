@@ -2,7 +2,7 @@
     using System.Collections;
     using System.IO.Ports; 
 public static class InputManager{
-    public static SerialPort[] stream = {new SerialPort("COM0", 115200), new SerialPort("COM0", 115200) };
+    public static SerialPort[] stream = {new SerialPort("COM0", 115200), new SerialPort("COM0", 115200) }; //Coms selbst eintragen wenn Unity sich aufhängt
     
     private static string recData = "";
     private static float winkel = 150;
@@ -20,7 +20,7 @@ public static class InputManager{
 
     public static bool Init(int player)
     {
-        int cnt = 0;
+        int cnt =2;
         bool exc = true;
         while (exc && cnt < 10)
         {
