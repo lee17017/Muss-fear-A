@@ -86,7 +86,7 @@ public class MainMenu : MonoBehaviour {
                 //Cursor um Delta nach oben verschieben
             }
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
         {
             //Bei Unten-Button in Spalte/Reihe weiter wechseln (mit Moduloswap)
             //CurserPosition++;
@@ -102,7 +102,7 @@ public class MainMenu : MonoBehaviour {
                 //Cursor um Delta nach unten verschieben
             }
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 3))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welche genau muss ausprobiert werden
         {
             //Bei Links-Button auf Zurück gehen
             //
@@ -111,7 +111,7 @@ public class MainMenu : MonoBehaviour {
                 //Cursor um Delta nach Links verschieben
             }
         }
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 4))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welche genau muss ausprobiert werden
         {
             //Bei Rechts-Button auf Weiter gehen
             //
@@ -121,7 +121,7 @@ public class MainMenu : MonoBehaviour {
             }
         }
 
-        if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 5))//Welche genau muss ausprobiert werden
+        if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welche genau muss ausprobiert werden
         {
             //Durch Bestätigungs-Button ausführen
             //MainButtons(xy);
