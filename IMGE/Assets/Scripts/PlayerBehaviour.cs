@@ -22,6 +22,9 @@ public class PlayerBehaviour : MonoBehaviour {
 
         //Changed
         StateUpdater.setLife(playerHP);
+        if (!controller)
+            playing = true;
+
 	}
 	
 	// Update is called once per frame
