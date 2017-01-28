@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public bool controller;
     public int playerHP;
     private Rigidbody rigid;
+    public bool playing = false;
 	// Use this for initialization
 	void Start () {
         if(controller)
@@ -21,15 +22,30 @@ public class PlayerBehaviour : MonoBehaviour {
 
         //Changed
         StateUpdater.setLife(playerHP);
+        if (!controller)
+            playing = true;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
         setZero();
-        getInput();
+        if (playing)
+            getInput();
+        else
+            checkZero();
 
 	}
 
+    void checkZero()
+    {
+        float in1, in2;
+        in1 = in2 = 0;
+        in2 = -InputManager.Analog(PlayerNumber, 4);
+        in1 = -InputManager.Analog(PlayerNumber, 3);
+        if (in1 < 0.2f && in2 < 0.2f)
+            playing = true;
+    }
     void setZero()
     {
 		rigid.velocity = Vector3.zero;
@@ -56,6 +72,8 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             in2 = -InputManager.Analog(PlayerNumber, 4);
             in1 = -InputManager.Analog(PlayerNumber, 3);
+            if (in1 < 0.2f && in2 < 0.2f)
+                return;
         }
         
         //Ausführung
