@@ -84,6 +84,13 @@ public class MainMenu : MonoBehaviour {
             else
             {
                 //Cursor um Delta nach oben verschieben
+                if (selection > 5)//Zweite Levelreihe (falls Reihe 4 lang)
+                {
+                    Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
+                    ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
+                    selection -= 5;//Aktueller Punkt - Reihe+1(da 5 der Returnbutton ist)
+                }
+                
             }
         }
         if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
@@ -129,8 +136,11 @@ public class MainMenu : MonoBehaviour {
             {
                 MainButtons(selection);
             }
+            else
+            {
+                Application.LoadLevel(selection);
+            }
         }
-        //Visualisierung anpassen
 	}
 
     public void MainButtons(int ButtonID)
@@ -140,48 +150,53 @@ public class MainMenu : MonoBehaviour {
         {
             //Rausgenommen: Multiplayer.gameObject.SetActive(false);
             Singleplayer.gameObject.SetActive(false);
-            Help.gameObject.SetActive(false);
+            //Help.gameObject.SetActive(false);
             Quit.gameObject.SetActive(false);
-            Options.gameObject.SetActive(false);
+            //Options.gameObject.SetActive(false);
             Return.gameObject.SetActive(true);
         }
-        //Controllersteuerung Seitenstartpunkt setzen (Play/Zurück)                                     !!!!!
+        //Controllersteuerung Seitenstartpunkt setzen (Play/Zurück)
         selection = 5;
         
         switch (ButtonID)//Entsprechende Buttons/Bilder freischalten
         {
-            case 1://Help
-                //Text aktivieren                                                                       !!!!!
+            //case 1://Help
+                //Text aktivieren!!!!!
                 //Schaltflächen aktivieren
-                Zurück.gameObject.SetActive(true);
-                Weiter.gameObject.SetActive(true);
+                //Zurück.gameObject.SetActive(true);
+                //Weiter.gameObject.SetActive(true);
                 //Info aktivieren
-                Info.gameObject.SetActive(true);
-                Infotext.gameObject.SetActive(true);
-                Infopage = 0;
-                break;
-            case 2://Options
-                //Optionenbuttons aktivieren                                                            !!!!!
-                ShipControl.gameObject.SetActive(true);
-                CanonControl.gameObject.SetActive(true);
-                break;
-            case 3://Singleplayer (rausgenommen
+                //Info.gameObject.SetActive(true);
+                //Infotext.gameObject.SetActive(true);
+                //Infopage = 0;
+                //break;
+            //case 2://Options
+                //Optionenbuttons aktivieren!!!!!
+                //ShipControl.gameObject.SetActive(true);
+                //CanonControl.gameObject.SetActive(true);
+                //break;
+            //case 3://Singleplayer (rausgenommen
                 //Image Player1 aktivieren und richtig positionieren (+Pla2)
-                Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 100, 0);
-                Player1.gameObject.SetActive(true);
-                Player2.GetComponent<RectTransform>().localPosition = new Vector3(75, -50, 0);
-                Player2.gameObject.SetActive(true);
-                start.gameObject.SetActive(true);
-                break;
+                //Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 100, 0);
+                //Player1.gameObject.SetActive(true);
+                //Player2.GetComponent<RectTransform>().localPosition = new Vector3(75, -50, 0);
+                //Player2.gameObject.SetActive(true);
+                //start.gameObject.SetActive(true);
+                //break;
             case 4://Levelauswahl
                 //Player1 auf Position setzen
                 //Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 75, 0);
+
                 //Images aktivieren
                 Player1.gameObject.SetActive(true);
                 Player2.gameObject.SetActive(true);
                 Player3.gameObject.SetActive(true);
                 Player4.gameObject.SetActive(true);
                 start.gameObject.SetActive(true);
+                //Marker setzen
+                Vector2 tmp = Return.GetComponent<RectTransform>().localPosition;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
+                selection = 4;
                 break;
             case 5://Return
                 //Zu Main wechseln
@@ -193,33 +208,27 @@ public class MainMenu : MonoBehaviour {
                 
                 //Andere Buttons deaktivieren
                 Return.gameObject.SetActive(false);
-                Zurück.gameObject.SetActive(false);
-                Weiter.gameObject.SetActive(false);
-                start.gameObject.SetActive(false);
+                //Zurück.gameObject.SetActive(false);
+                //Weiter.gameObject.SetActive(false);
+                //start.gameObject.SetActive(false);
                 //Images deaktivieren
                 Player1.gameObject.SetActive(false);
                 Player2.gameObject.SetActive(false);
                 Player3.gameObject.SetActive(false);
                 Player4.gameObject.SetActive(false);
-                Info.gameObject.SetActive(false);
+                //Info.gameObject.SetActive(false);
                 //Text deaktivieren
-                Infotext.gameObject.SetActive(false);
-                //Toggles deaktivieren
-                ShipControl.gameObject.SetActive(false);
-                CanonControl.gameObject.SetActive(false);
+                //Infotext.gameObject.SetActive(false);
+                //Toggles deaktivieren  //ShipControl.gameObject.SetActive(false);  //CanonControl.gameObject.SetActive(false);
+
+                //Marker setzen
+                Vector2 tmp1 = Singleplayer.GetComponent<RectTransform>().localPosition;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp1.x, tmp1.y, 0);
+                selection = 4;
                 break;
-            case 6://Zurück
-                //Seitenumschalten rückwärts
-                Infopage--;
-                break;
-            case 7://weiter
-                //Seitenumschalten vorwärts
-                Infopage++;
-                break;
-            case 8://Start
-                //Wechsel zu Scene "Playing"
-                Application.LoadLevel(1);
-                break;
+            //case 6:     //Zurück    //Seitenumschalten rückwärts    Infopage--;     break;
+            //case 7:   //weiter   //Seitenumschalten vorwärts      Infopage++;     break;
+            //case 8:   //Start    //Wechsel zu Scene "Playing"    Application.LoadLevel(1);   break;
             default://Quit
                 Application.Quit();
                 break;
