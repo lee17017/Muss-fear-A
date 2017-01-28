@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
     public Toggle ShipControl;
     public Toggle CanonControl;
     private int Infopage;
+    private int selection=5;
 
 
 	// Use this for initialization
@@ -72,27 +73,57 @@ public class MainMenu : MonoBehaviour {
         {
             //Bei Oben-Button in Spalte/Reihe zurück wechseln (mit Moduloswap)
             //CurserPosition--;
+            if (Singleplayer.IsActive() == true)
+            {
+                //Cursor neben Singleplayer setzen
+                selection = 4;
+            }
+            else
+            {
+                //Cursor um Delta nach oben verschieben
+            }
         }
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 2))//Welche genau muss ausprobiert werden
         {
             //Bei Unten-Button in Spalte/Reihe weiter wechseln (mit Moduloswap)
             //CurserPosition++;
+            if (Quit.IsActive() == true)
+            {
+                //Cursor neben Quit setzen
+                selection = 0;
+            }
+            else
+            {
+                //Cursor um Delta nach unten verschieben
+            }
         }
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 3))//Welche genau muss ausprobiert werden
         {
             //Bei Links-Button auf Zurück gehen
             //
+            if (!Singleplayer.IsActive() == true)
+            {
+                //Cursor um Delta nach Links verschieben
+            }
         }
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 4))//Welche genau muss ausprobiert werden
         {
             //Bei Rechts-Button auf Weiter gehen
             //
+            if (!Singleplayer.IsActive() == true)
+            {
+                //Cursor um Delta nach Links verschieben
+            }
         }
 
         if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 5))//Welche genau muss ausprobiert werden
         {
             //Durch Bestätigungs-Button ausführen
             //MainButtons(xy);
+            if (Singleplayer.IsActive() == true)
+            {
+                MainButtons(selection);
+            }
         }
         //Visualisierung anpassen
 	}
@@ -110,6 +141,7 @@ public class MainMenu : MonoBehaviour {
             Return.gameObject.SetActive(true);
         }
         //Controllersteuerung Seitenstartpunkt setzen (Play/Zurück)                                     !!!!!
+        selection = 5;
         
         switch (ButtonID)//Entsprechende Buttons/Bilder freischalten
         {
@@ -128,7 +160,7 @@ public class MainMenu : MonoBehaviour {
                 ShipControl.gameObject.SetActive(true);
                 CanonControl.gameObject.SetActive(true);
                 break;
-            case 3://Singleplayer
+            case 3://Singleplayer (rausgenommen
                 //Image Player1 aktivieren und richtig positionieren (+Pla2)
                 Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 100, 0);
                 Player1.gameObject.SetActive(true);
@@ -136,22 +168,23 @@ public class MainMenu : MonoBehaviour {
                 Player2.gameObject.SetActive(true);
                 start.gameObject.SetActive(true);
                 break;
-            case 4://Multiplayer (rausgenommen)
+            case 4://Levelauswahl
                 //Player1 auf Position setzen
-                Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 75, 0);
+                //Player1.GetComponent<RectTransform>().localPosition = new Vector3(-75, 75, 0);
                 //Images aktivieren
                 Player1.gameObject.SetActive(true);
                 Player2.gameObject.SetActive(true);
                 Player3.gameObject.SetActive(true);
                 Player4.gameObject.SetActive(true);
+                start.gameObject.SetActive(true);
                 break;
             case 5://Return
                 //Zu Main wechseln
                 //Rausgenommen: Multiplayer.gameObject.SetActive(true);
                 Singleplayer.gameObject.SetActive(true);
-                Help.gameObject.SetActive(true);
+                //Help.gameObject.SetActive(true);
                 Quit.gameObject.SetActive(true);
-                Options.gameObject.SetActive(true);
+                //Options.gameObject.SetActive(true);
                 
                 //Andere Buttons deaktivieren
                 Return.gameObject.SetActive(false);
