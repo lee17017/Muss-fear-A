@@ -120,7 +120,7 @@ public class PlayerBehaviour : MonoBehaviour {
         if (playerHP <= 0)
             Debug.Log("DEAD");
         //Changed
-        StateUpdater.UpdateLife(-5);
+        StateUpdater.UpdateLife(-damage);
     }
 
     void OnTriggerEnter(Collider col)
@@ -133,6 +133,12 @@ public class PlayerBehaviour : MonoBehaviour {
         else if (col.tag == "CP")
         {
             checkPointNr++;
+            Destroy(col.gameObject);
+        }
+        else if (col.tag == "Asteroid")
+        {
+
+            takeDamage(col.GetComponent<AsteroidBehaviour>().HP);
             Destroy(col.gameObject);
         }
 
