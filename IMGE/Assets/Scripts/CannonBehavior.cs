@@ -118,7 +118,13 @@ public class CannonBehavior : MonoBehaviour {
             }
         }
     }
-
+    void OnApplicationQuit()
+    {
+        if (controller)
+        {
+            InputManager.outLED(1);
+        }
+    }
     IEnumerator reload()
     {
         reloading = true;

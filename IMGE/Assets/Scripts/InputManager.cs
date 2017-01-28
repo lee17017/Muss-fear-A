@@ -40,7 +40,6 @@ public static class InputManager{
                 exc = true;
                 stream[player] = new SerialPort("COM" + cnt, 115200);
                 cnt++;
-                Debug.Log("ADFSDf" + player);
             }
         }
         return !exc;
