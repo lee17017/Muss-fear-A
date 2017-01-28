@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShipBehaviour : MonoBehaviour {
+public class MenuShipBehaviour : MonoBehaviour {
     private Vector3 Ziel;
     private Vector3 nextZiel;
     private int Zielcounter = 2;

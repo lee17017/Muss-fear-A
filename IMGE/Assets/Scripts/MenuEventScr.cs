@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EventScr : MonoBehaviour {
+public class MenuEventScr : MonoBehaviour {
     
     public GameObject Asteroid;
     public GameObject Enemy;
