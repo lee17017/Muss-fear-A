@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour {
     public Image Player3;
     public Image Player4;
     public Image Info;
+    public Image ConCursor;
     public Text Infotext;
     public Toggle ShipControl;
     public Toggle CanonControl;
@@ -76,6 +77,8 @@ public class MainMenu : MonoBehaviour {
             if (Singleplayer.IsActive() == true)
             {
                 //Cursor neben Singleplayer setzen
+                Vector2 tmp = Singleplayer.GetComponent<RectTransform>().localPosition;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
                 selection = 4;
             }
             else
@@ -90,6 +93,8 @@ public class MainMenu : MonoBehaviour {
             if (Quit.IsActive() == true)
             {
                 //Cursor neben Quit setzen
+                Vector2 tmp = Quit.GetComponent<RectTransform>().localPosition;
+                ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x, tmp.y, 0);
                 selection = 0;
             }
             else
