@@ -8,14 +8,16 @@ public class AsteroidSpawner : MonoBehaviour {
     public GameObject asteroid, orbitAst;
     public GameObject player;
     public GameObject arrow;
+    private int speedSpawn = 0;
     // Use this for initialization
     private bool start;
-   
+    public float spwnCD, cpSpwnCD;
     private GameObject[] checkPoints;
 	void Start () {
         checkPoints = arrow.GetComponent<arrowScript>().cps;
         start = player.GetComponent<PlayerBehaviour>().playing;
     }
+
     IEnumerator spawnNormal()
     {
         normal = false;
@@ -26,7 +28,21 @@ public class AsteroidSpawner : MonoBehaviour {
         GameObject neu = Instantiate(asteroid);
         neu.transform.position = pos1;
         neu.transform.LookAt(pos2);
-        yield return new WaitForSeconds(3.0f);
+             float x, y, z, sum;
+
+        x = Random.Range(1.0f, 3.0f);
+        y = Random.Range(1.0f, 3.0f);
+        z = Random.Range(1.0f, 3.0f);
+        sum = x + y + z;
+        int HP = neu.transform.GetComponent<AsteroidBehaviour>().HP = (int)(sum * 3);
+        neu.transform.GetComponent<AsteroidBehaviour>().speed = 100 - HP * 3;
+        if (speedSpawn < 30)
+        {
+            speedSpawn++;
+            yield return new WaitForSeconds(spwnCD / 3);
+        }
+        else
+            yield return new WaitForSeconds(spwnCD);
         normal = true;
     }
 
@@ -41,8 +57,18 @@ public class AsteroidSpawner : MonoBehaviour {
         GameObject neu = Instantiate(asteroid);
         neu.transform.position = pos1;
         neu.transform.LookAt(pos2);
+        float x,y,z, sum;
         
-        yield return new WaitForSeconds(3.0f);
+        x = Random.Range(1.0f, 3.0f);
+        y = Random.Range(1.0f, 3.0f);
+        z = Random.Range(1.0f, 3.0f);
+        sum = x + y + z;
+        int HP = neu.transform.GetComponent<AsteroidBehaviour>().HP = (int)(sum * 3);
+        neu.transform.GetComponent<AsteroidBehaviour>().speed = 100 - HP*3;
+
+        neu.transform.localScale = new Vector3(x, y, z);
+ 
+            yield return new WaitForSeconds(cpSpwnCD);
         cp = true;
     }
     IEnumerator spawnOrbit()
@@ -53,7 +79,7 @@ public class AsteroidSpawner : MonoBehaviour {
             Vector3 checkPoit = checkPoints[player.GetComponent<PlayerBehaviour>().checkPointNr].transform.position;
             GameObject temp = Instantiate(orbitAst);
             temp.transform.position = checkPoit;
-            temp.transform.GetComponent<AsteroidOrbit>().HP++;
+            temp.transform.GetComponent<AsteroidOrbit>().HP = 30;
             for (int j = 0; j < 15; j++)
             {
                 yield return new WaitForEndOfFrame();
