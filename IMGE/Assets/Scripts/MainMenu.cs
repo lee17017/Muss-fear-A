@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
     //public Button Multiplayer;
@@ -82,7 +83,7 @@ public class MainMenu : MonoBehaviour {
         if (timer < 0)
         {
             //Controllersteuerung
-            if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 1) || InputManager.Pressed(1, 1))
             {
                 timer =0.2f;
                 //Bei Oben-Button in Reihe zurück wechseln
@@ -102,7 +103,7 @@ public class MainMenu : MonoBehaviour {
                     ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
                 }
             }
-            if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 2) || InputManager.Pressed(1, 2))
             {
                 timer =0.2f;
                 //Bei Unten-Button in Reihe weiter wechseln
@@ -122,11 +123,10 @@ public class MainMenu : MonoBehaviour {
                     ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
                 }
             }
-            if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3))
             {
                 timer =0.2f;
                 //Bei Links-Button auf Zurück gehen
-                //
                 if (!Singleplayer.IsActive() == true)
                 {
                     //Cursor verschieben
@@ -136,11 +136,10 @@ public class MainMenu : MonoBehaviour {
                     ConCursor.GetComponent<RectTransform>().localPosition = new Vector3(tmp.x + (selection % 4) * 150, tmp.y - (selection / 4) * 150, 0);
                 }
             }
-            if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4))
             {
                 timer =0.2f;
                 //Bei Rechts-Button auf Weiter gehen
-                //
                 if (!Singleplayer.IsActive() == true)
                 {
                     //Cursor verschieben
@@ -151,7 +150,7 @@ public class MainMenu : MonoBehaviour {
                 }
             }
 
-            if (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))
             {
                 timer =0.2f;
                 //Durch Bestätigungs-Button ausführen
@@ -162,11 +161,11 @@ public class MainMenu : MonoBehaviour {
                 }
                 else
                 {
-                    Application.LoadLevel(selection);
+                    SceneManager.LoadScene(selection);
                 }
             }
 
-            if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))//Welcher genau muss ausprobiert werden
+            if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5))
             {
                 timer =0.2f;
                 //Durch Return-Button zurückkehren
