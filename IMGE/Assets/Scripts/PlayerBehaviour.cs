@@ -141,6 +141,12 @@ public class PlayerBehaviour : MonoBehaviour {
             takeDamage(col.GetComponent<AsteroidBehaviour>().HP);
             Destroy(col.gameObject);
         }
+        else if (col.tag == "EnemyBullet")
+        {
+            Debug.Log("ASDd");
+            takeDamage(3);
+            Destroy(col.gameObject);
+        }
 
     }
 
