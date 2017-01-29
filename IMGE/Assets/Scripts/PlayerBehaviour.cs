@@ -92,13 +92,17 @@ public class PlayerBehaviour : MonoBehaviour {
     }
     void turn(float in1, float in2)
     {
+        float diff = in1 - in2;
+        Debug.Log(in1 + "" +diff);
         if (in1 < in2)
         {
-            gameObject.transform.LookAt(gameObject.transform.position+gameObject.transform.forward-gameObject.transform.right/20);
+            diff *= -1;
+            gameObject.transform.LookAt(gameObject.transform.position+gameObject.transform.forward-gameObject.transform.right/(20-diff));
         }
         else if(in1>in2)
         {
-            gameObject.transform.LookAt(gameObject.transform.position + gameObject.transform.forward + gameObject.transform.right/20);
+
+            gameObject.transform.LookAt(gameObject.transform.position + gameObject.transform.forward + gameObject.transform.right/ (20 - diff));
         }
     }
     void move(float in1, float in2)
