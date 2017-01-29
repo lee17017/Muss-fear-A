@@ -159,9 +159,10 @@ public class MainMenu : MonoBehaviour {
                 {
                     MainButtons(selection);
                 }
-                else
+                else if(selection < 3)
                 {
-                    SceneManager.LoadScene(selection);
+                    string a = "Lvl" + (selection + 1);
+                    SceneManager.LoadScene(a);
                 }
             }
 
