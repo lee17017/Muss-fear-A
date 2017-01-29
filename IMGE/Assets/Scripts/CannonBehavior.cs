@@ -21,11 +21,11 @@ public class CannonBehavior : MonoBehaviour {
     public GameObject rTXT;
     private Text reloadTxt;
     private float shootTimer = 0, reloadTimer=0, pressReloadTimer =0;
-    private GameObject bulletSpawnPoint;
+    public GameObject bulletSpawnPoint;
     private int playerNr = 1;//2.Player
 
 	void Start () {
-        bulletSpawnPoint = GameObject.Find("BulletSpawnPoint");
+      
         actMun = maxMun;
         if(controller)
             controller = InputManager.Init(playerNr);

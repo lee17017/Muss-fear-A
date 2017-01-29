@@ -9,6 +9,7 @@ public class arrowScript : MonoBehaviour {
     private PlayerBehaviour playerScript;
     private float x, z;
     private int max, act;
+    public bool boss = false;
 	// Use this for initialization
 	void Start () {
         playerScript = player.GetComponent<PlayerBehaviour>();
@@ -25,6 +26,11 @@ public class arrowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(boss)
+        {
+            x = cps[act].transform.position.x;
+            z = cps[act].transform.position.z;
+        }
         if (playerScript.checkPointNr != act && act < max-1)
         {
             act = playerScript.checkPointNr;
