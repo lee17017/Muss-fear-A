@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 using UnityEngine.UI;
 /*My Changes (Oliver)
@@ -25,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour {
         rigid = GetComponent<Rigidbody>();
 
         //Changed
+        StateUpdater.reset();
         StateUpdater.setLife(playerHP);
         if (!controller)
             playing = true;
@@ -47,7 +49,6 @@ public class PlayerBehaviour : MonoBehaviour {
         in1 = in2 = 0;
         in2 = -InputManager.Analog(PlayerNumber, 4);
         in1 = -InputManager.Analog(PlayerNumber, 3);
-        Debug.Log("" + in1 + " - " + in2);
         if (in1 > -0.2f && in2 > -0.2f)
         {
             text.text = "";
@@ -85,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour {
             if (in1 < -4.9 && in2 < -4.9)
                 in1 = in2 = -5;
         }
-        
+
         //Ausführung
         turn(in1,in2);
         move(in1, in2);
@@ -93,7 +94,7 @@ public class PlayerBehaviour : MonoBehaviour {
     void turn(float in1, float in2)
     {
         float diff = in1 - in2;
-        Debug.Log(in1 + "" +diff);
+       
         if (in1 < in2)
         {
             diff *= -1;
@@ -122,7 +123,7 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         playerHP -= damage;
         if (playerHP <= 0)
-            Debug.Log("DEAD");
+            SceneManager.LoadScene("Endscene");
         //Changed
         StateUpdater.UpdateLife(-damage);
     }

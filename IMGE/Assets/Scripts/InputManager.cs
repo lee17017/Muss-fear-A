@@ -11,39 +11,45 @@ public static class InputManager{
     
     private static int[] masks = new int[] { 0x40, 0x80, 0x100, 0x200, 0x400, 0x800 };
 
-
+    private static bool[] init = { false, false };
+    private static bool init2=false;
     public static bool Init()
     {
-
-        return Init(0) && Init(1);
+        if(!init[0] && !init[1])
+            return Init(0) && Init(1);
+        return true;
     }
 
     public static bool Init(int player)
     {
-        int cnt =2;
-        bool exc = true;
-        while (exc && cnt < 10)
+        if (!init[player])
         {
-            try
+            int cnt = 2;
+            bool exc = true;
+            while (exc && cnt < 10)
             {
-                exc = false;
-                if (!stream[player].IsOpen)
+                try
                 {
-                    stream[player].Open();
-                    outLED(player);
-                    setLED(player, 1);
-                    Debug.Log("Opened" + player);
+                    exc = false;
+                    if (!stream[player].IsOpen)
+                    {
+                        stream[player].Open();
+                        outLED(player);
+                        setLED(player, 1);
+                        Debug.Log("Opened" + player);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    exc = true;
+                    stream[player] = new SerialPort("COM" + cnt, 115200);
+                    cnt++;
                 }
             }
-            catch (System.Exception e)
-            {
-                exc = true;
-                stream[player] = new SerialPort("COM" + cnt, 115200);
-                cnt++;
-            }
+            init[player] = !exc;
+            return !exc;
         }
-        return !exc;
-        
+        return true;
     }
 
 
