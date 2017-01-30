@@ -278,4 +278,12 @@ public class MainMenu : MonoBehaviour {
                 break;
         }
     }
+
+    void OnApplicationQuit()
+    {
+        
+            InputManager.outLED(0);
+         InputManager.outLED(1);
+        Debug.Log("QUIT");
+    }
 }

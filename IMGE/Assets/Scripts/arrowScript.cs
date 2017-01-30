@@ -19,8 +19,7 @@ public class arrowScript : MonoBehaviour {
         act = 0;
         for (int i = 1; i < max; i++)
         {
-            cps[i].GetComponent<Renderer>().enabled = false;
-            cps[i].GetComponent<Collider>().enabled = false;
+            cps[i].SetActive(false);
         }
     }
 	
@@ -34,8 +33,7 @@ public class arrowScript : MonoBehaviour {
         if (playerScript.checkPointNr != act && act < max-1)
         {
             act = playerScript.checkPointNr;
-            cps[act].GetComponent<Renderer>().enabled = true;
-            cps[act].GetComponent<Collider>().enabled = true;
+            cps[act].SetActive(true);
             x = cps[act].transform.position.x;
             z = cps[act].transform.position.z;
         }

@@ -42,7 +42,7 @@ public class Boss : MonoBehaviour {
         Quaternion ausrichten = Quaternion.LookRotation(new Vector3(Ziel.x, Ziel.y, Ziel.z) - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, ausrichten, Time.deltaTime);
 
-        transform.Translate(Vector3.forward * 25 * Time.deltaTime, Space.Self);
+        transform.Translate(Vector3.forward * 15 * Time.deltaTime, Space.Self);
     }
     IEnumerator SwitchPos()
     {
@@ -58,8 +58,8 @@ public class Boss : MonoBehaviour {
         {
             if (HP > 0)
                 HP -= 7;
-            
-             
+
+            Destroy(col.gameObject);
             Debug.Log(HP);
         }
     }
