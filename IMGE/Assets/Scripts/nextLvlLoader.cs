@@ -8,6 +8,7 @@ public class nextLvlLoader : MonoBehaviour {
     public GameObject player;
     public int maxCP;
     public string nextLvlName;
+    public float delay;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +17,12 @@ public class nextLvlLoader : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (player.GetComponent<PlayerBehaviour>().checkPointNr >= maxCP)
-            SceneManager.LoadScene(nextLvlName);
+            StartCoroutine("LoadScene");
+       
 	}
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(nextLvlName);
+    }
 }

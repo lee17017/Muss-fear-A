@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour {
     public float blowTime=0;
     private bool once = true;
     public Text text;
+    public GameObject explosion;
     public float textTimer;
     // Use this for initialization
     void Start()
@@ -113,9 +114,22 @@ public class Boss : MonoBehaviour {
         {
             if (HP > 0 && !triggered)
                 HP -= 7;
-
+            else if (HP <= 0)
+                Destroy(this.gameObject);
             Destroy(col.gameObject);
             Debug.Log(HP);
+
         }
+    }
+
+    void OnDestroy()
+    {
+        player.GetComponent<PlayerBehaviour>().checkPointNr = 3;
+        GameObject temp = Instantiate(explosion);
+        temp.transform.position = transform.position;
+        temp.GetComponent<ParticleSystem>().startSize = 7;
+
+
+        temp.GetComponent<ParticleSystem>().startLifetime = 2;
     }
 }
