@@ -20,7 +20,7 @@ public class MenuEventScr : MonoBehaviour {
         {
             spawn = false;
             GameObject tmp=Instantiate(Asteroid,new Vector3(1000,0,Random.Range(-200, 200)),Quaternion.identity);
-            tmp.GetComponent<Rigidbody>().velocity = new Vector3(-50, 0, 0);
+            tmp.GetComponent<Rigidbody>().velocity = new Vector3(-70, 0, 0);
             StartCoroutine(Spawn());
         }
         
