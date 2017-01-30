@@ -104,4 +104,14 @@ public static class InputManager{
         
     }
 
+    public static float blow(int player)
+    {
+
+        stream[player].Write("s");
+        string temp = stream[player].ReadLine();
+        string[] parts = temp.Split(' ');
+        float blow = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture);
+        return blow;
+    }
+
 }

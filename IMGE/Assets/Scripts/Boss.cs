@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour {
 
-    public int HP = 900;
+    public int HP = 700;
     private Vector3 Ziel;
     private Vector3 nextZiel;
     private int Zielcounter = 2;
-    bool change = true;
+    public GameObject player;
+    public bool change = true;
+    private int triggerPoint;
+    public GameObject shield;
+    public bool triggered;
+    public float blowTime=0;
+    private bool once = true;
     // Use this for initialization
     void Start()
     {
+        InputManager.Init();
+        triggered = false;
+        triggerPoint = HP / 2;
         Ziel = GameObject.Find("Position0").transform.position;
         nextZiel = GameObject.Find("Position1").transform.position;
         StartCoroutine(SwitchPos());
@@ -20,8 +29,33 @@ public class Boss : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Bewegung();
+        if(player.GetComponent<PlayerBehaviour>().playing)
+            Bewegung();
+        if (triggered)
+        {
+            if (InputManager.blow(0) > 4000 && InputManager.blow(1) > 4000)
+            {
+                blowTime += Time.deltaTime;
+            }
 
+            Debug.Log(blowTime);
+        }
+      
+
+        if (HP < triggerPoint && !triggered && once)
+        {
+            shield.SetActive(true);
+            triggered = true;
+            once = false;
+            if (blowTime > 2)
+            {
+                shield.SetActive(false);
+                triggered = false;
+            }
+            else if (blowTime > 1)
+                shield.GetComponent<ParticleSystem>().emissionRate = 200;
+
+        }
 
     }
     private void Bewegung()
@@ -56,7 +90,7 @@ public class Boss : MonoBehaviour {
     {
         if (col.tag == "Bullet")
         {
-            if (HP > 0)
+            if (HP > 0 && !triggered)
                 HP -= 7;
 
             Destroy(col.gameObject);
