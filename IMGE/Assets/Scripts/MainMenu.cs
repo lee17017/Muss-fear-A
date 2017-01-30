@@ -13,17 +13,18 @@ public class MainMenu : MonoBehaviour {
     public Button Zurück;
     public Button Weiter;
     public Button start;
-    public Image Player1;
-    public Image Player2;
-    public Image Player3;
-    public Image Player4;
-    public Image Player5;
-    public Image Player6;
-    public Image Player7;
-    public Image Player8;
+    public Button Player1;
+    public Button Player2;
+    public Button Player3;
+    public Button Player4;
+    public Button Player5;
+    public Button Player6;
+    public Button Player7;
+    public Button Player8;
     public Image Info;
     public Image ConCursor;
     public Text Infotext;
+    public Text Title;
     public Toggle ShipControl;
     public Toggle CanonControl;
     private int Infopage;
@@ -32,7 +33,7 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InputManager.Init();
+        //InputManager.Init(); //Wieder entkommentieren
         //Alles voreingestellt...
         //Multiplayer.gameObject.SetActive(true);//Multiplayer aktivieren
         //Singleplayer.gameObject.SetActive(true);//Singleplayer aktivieren
@@ -230,6 +231,7 @@ public class MainMenu : MonoBehaviour {
                 Player6.gameObject.SetActive(true);
                 Player7.gameObject.SetActive(true);
                 Player8.gameObject.SetActive(true);
+                Title.gameObject.SetActive(false);
                 //start.gameObject.SetActive(true);
                 //Marker setzen
                 Vector2 tmp = Player1.GetComponent<RectTransform>().localPosition;
@@ -259,6 +261,7 @@ public class MainMenu : MonoBehaviour {
                 Player6.gameObject.SetActive(false);
                 Player7.gameObject.SetActive(false);
                 Player8.gameObject.SetActive(false);
+                Title.gameObject.SetActive(true);
                 //Info.gameObject.SetActive(false);
                 //Text deaktivieren
                 //Infotext.gameObject.SetActive(false);
@@ -285,5 +288,9 @@ public class MainMenu : MonoBehaviour {
             InputManager.outLED(0);
          InputManager.outLED(1);
         Debug.Log("QUIT");
+    }
+    public void Load(int Level)
+    {
+        SceneManager.LoadScene("Lvl"+Level);
     }
 }
