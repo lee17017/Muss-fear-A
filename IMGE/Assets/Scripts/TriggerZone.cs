@@ -14,7 +14,7 @@ public class TriggerZone : MonoBehaviour {
 	void Update () {
 		
 	}
-    void OnTriggerEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         Vector3 playerPos = col.transform.position;
         Vector3 thisPos = this.transform.position;

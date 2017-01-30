@@ -6,8 +6,11 @@ public class EnemyPatroller : MonoBehaviour {
 
     public GameObject[] positions;
     private int position = 0;
+    private int HP;
+    public GameObject explosion; 
 	// Use this for initialization
 	void Start () {
+        HP = Random.Range(30, 50);
     }
 	
 	// Update is called once per frame
@@ -30,5 +33,32 @@ public class EnemyPatroller : MonoBehaviour {
 
         transform.Translate(Vector3.forward * 30 * Time.deltaTime, Space.Self);
     }
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag=="Bullet")
+        {
 
+
+            Destroy(col.gameObject);
+            if (HP > 0)
+            {
+               
+                HP -= 7;
+            }
+            else 
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+    void OnDestroy()
+    {
+
+        GameObject temp = Instantiate(explosion);
+        temp.transform.position = transform.position;
+        temp.GetComponent<ParticleSystem>().startSize = 4;
+
+
+        temp.GetComponent<ParticleSystem>().startLifetime = 1;
+    }
 }

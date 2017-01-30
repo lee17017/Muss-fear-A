@@ -36,13 +36,16 @@ public class AsteroidBehaviour : MonoBehaviour {
         }
         else if (col.tag == "Asteroid" && HP <= col.GetComponent<AsteroidBehaviour>().HP)
         {
-            Instantiate(Explo, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 
         if (HP <= 0)
-            Instantiate(Explo, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+    }
+
+    void OnDestroy()
+    {
+        Instantiate(Explo, transform.position, Quaternion.identity);
     }
 
 }

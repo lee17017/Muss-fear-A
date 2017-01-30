@@ -19,21 +19,19 @@ public class BulletBehavior : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.transform.tag == "Enemy")
-        {
-            Destroy(this.gameObject);
-            Destroy(col.gameObject);
-
-            //simuliere Explosion mit schrei
-            GameObject temp = (GameObject) Instantiate(explosion);
-            Destroy(temp, 2);
-        }
-        else if (col.transform.tag == "Wall")
+       
+        if (col.transform.tag == "Wall")
         {
             Destroy(this.gameObject);
 
             //Explosion
           
         }
+    }
+
+    void OnDestroy()
+    {
+        GameObject temp = Instantiate(explosion);
+        temp.transform.position = this.gameObject.transform.position;
     }
 }

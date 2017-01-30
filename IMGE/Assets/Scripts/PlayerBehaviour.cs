@@ -157,7 +157,6 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         else if (col.tag == "EnemyBullet")
         {
-            Debug.Log("ASDd");
             takeDamage(3);
             Destroy(col.gameObject);
         }

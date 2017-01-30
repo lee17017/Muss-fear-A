@@ -79,7 +79,7 @@ public class AsteroidSpawner : MonoBehaviour {
             Vector3 checkPoit = checkPoints[player.GetComponent<PlayerBehaviour>().checkPointNr].transform.position;
             GameObject temp = Instantiate(orbitAst);
             temp.transform.position = checkPoit;
-            temp.transform.GetComponent<AsteroidOrbit>().HP = 30;
+
             for (int j = 0; j < 15; j++)
             {
                 yield return new WaitForEndOfFrame();
