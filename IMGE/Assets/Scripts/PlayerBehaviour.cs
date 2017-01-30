@@ -11,6 +11,15 @@ using UnityEngine.UI;
  */
 
 public class PlayerBehaviour : MonoBehaviour {
+
+    private Rigidbody rb;
+    
+    GameObject trigger;
+    public GameObject enemyPrefab;
+    float xPosition = -50f;
+    float yPosition = 1.5f;
+    bool activate = true;
+
     private int PlayerNumber=0;
     public bool controller;
     public int playerHP;
@@ -155,6 +164,32 @@ public class PlayerBehaviour : MonoBehaviour {
 
     }
 
+    void OnCollisionEnter(Collision col)
+    {
+        if (transform.position.z < -5) { activate = false; }
+        else
+        {
+            activate = true;
+        }
+        if ((col.gameObject.tag == "TriggerZone") && activate == true)
+        {
+
+
+            Debug.Log("Collsion detected!");  //Get gameObject 
+            trigger = GameObject.FindGameObjectWithTag("TriggerZone");
+            float distance = trigger.transform.position.z - 5;
+            for (int i = 0; i < 6; i++)
+            {
+                Instantiate(enemyPrefab, new Vector3(xPosition, yPosition, distance), Quaternion.identity);  //Instantiate 5 enemies 
+                if (xPosition >= 50) { xPosition = -50; }
+                xPosition += 6;
+                activate = false;
+            }
+
+        }
+
+
+    }
     void OnApplicationQuit()
     {
         if (controller)

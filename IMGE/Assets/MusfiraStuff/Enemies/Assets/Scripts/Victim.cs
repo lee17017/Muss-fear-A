@@ -41,7 +41,8 @@ public class Victim : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (transform.position.z < -5) { activate = false; }else
+        if (transform.position.z < -5) { activate = false;
+        } else
         {
             activate = true; 
         }
