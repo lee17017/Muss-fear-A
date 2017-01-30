@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerZone : MonoBehaviour {
 
+    public GameObject[] spawnPoints;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +14,11 @@ public class TriggerZone : MonoBehaviour {
 	void Update () {
 		
 	}
+    void OnTriggerEnter(Collision col)
+    {
+        Vector3 playerPos = col.transform.position;
+        Vector3 thisPos = this.transform.position;
+
+    }
+
 }
