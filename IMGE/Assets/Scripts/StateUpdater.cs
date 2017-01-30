@@ -18,13 +18,18 @@ public static class StateUpdater{
     private static Image Munition;
     private static Text Score;
 
-
+    public static void reset()
+    {
+        HP = 0;
+        munition = 0;
+        score = 0;
+        setMunition(30);
+    }
 
     //---------------------------------------------------------------------------------Setter-------------------------------------------------------------------------------
 
     public static void setMunition(int muni){
         Munition = GameObject.Find("Bullet-State-IMG").GetComponent<Image>();
-       
         UpdateMunition(muni-munition);
     }
     public static void setLife(int LifeMax)

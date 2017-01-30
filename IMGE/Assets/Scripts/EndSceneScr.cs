@@ -4,16 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneScr : MonoBehaviour {
 
+    private float delay = 2;
 	// Use this for initialization
 	void Start () {
-		
+        InputManager.Init();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5) || InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6))
+        delay -= Time.deltaTime;
+        for (int i = 1; i < 7; i++)
         {
-            goToMain();
+            if ((delay < 0) && (InputManager.Pressed(0, i) || InputManager.Pressed(1, i)))
+            {
+                goToMain();
+                return;
+            }
+
         }
 	}
     public void goToMain()

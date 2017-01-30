@@ -33,7 +33,6 @@ public class CannonBehavior : MonoBehaviour {
 
         reloadTxt = rTXT.GetComponent<Text>();
         //Olivers Part
-        StateUpdater.setMunition(maxMun);
         //
 	}
     
