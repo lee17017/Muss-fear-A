@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class WinSceneScr : MonoBehaviour {
     private int CamAngle = 60;
     private int delta=2;
+    private float delay = 2;
     public Text Win;
     public Image Info;
     public Button Next;
@@ -13,9 +14,10 @@ public class WinSceneScr : MonoBehaviour {
     public Image Sel;
     public Image Instr;
     private int rotation = 0;
+    private bool next = true;
 	// Use this for initialization
 	void Start () {
-        
+        InputManager.Init();
 	}
 	
 	// Update is called once per frame
@@ -52,8 +54,6 @@ public class WinSceneScr : MonoBehaviour {
                 Next.gameObject.SetActive(true);
                 Sel.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
                 Sel.gameObject.SetActive(true);
-                Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
-                Instr.gameObject.SetActive(true);
                 rotation += 4;
             }
             else if (rotation < 364)
@@ -62,14 +62,50 @@ public class WinSceneScr : MonoBehaviour {
                 Menu.gameObject.SetActive(true);
                 rotation += 4;
             }
+            else if (rotation < 475)
+            {
+                Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 364), 0, 0);
+                Instr.gameObject.SetActive(true);
+                rotation += 4;
+            }
         }
         if (CamAngle > 178)
         {
             Camera.main.transform.GetComponent<Camera>().fieldOfView = 178;
         }
         //Input von Controller einstellen
-
+        checkConInputs();//Das immer ganz am Ende lassen oder in lateUpdate
 	}
+
+    private void checkConInputs()
+    {
+        delay -= Time.deltaTime;
+        
+        if ((delay < 0) && (InputManager.Pressed(0, 6) || InputManager.Pressed(1, 6)))//Apply
+        {
+            if (next) {
+                nextLvlLoader();
+            }
+            else
+            {
+                goToMenu();
+            }
+        }
+        if ((delay < 0) && (InputManager.Pressed(0, 3) || InputManager.Pressed(1, 3)))//Go Left
+        {
+            Sel.GetComponent<RectTransform>().localPosition = new Vector3(-125, -130, 0);
+            next = true;
+        }
+        if ((delay < 0) && (InputManager.Pressed(0, 4) || InputManager.Pressed(1, 4)))//Go Right
+        {
+            Sel.GetComponent<RectTransform>().localPosition = new Vector3(125, -130, 0);
+            next = false;
+        }
+        if ((delay < 0) && (InputManager.Pressed(0, 5) || InputManager.Pressed(1, 5)))//Return
+        {
+            goToMenu();
+        }
+    }
 
     public void goToMenu()
     {
