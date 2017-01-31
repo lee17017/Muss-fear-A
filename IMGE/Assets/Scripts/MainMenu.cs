@@ -291,6 +291,7 @@ public class MainMenu : MonoBehaviour {
     }
     public void Load(int Level)
     {
+        GameData.setLevel(Level);
         SceneManager.LoadScene("Lvl"+Level);
     }
 }

@@ -114,6 +114,12 @@ public class WinSceneScr : MonoBehaviour {
 
     public void nextLvlLoader()
     {
-        //Load next Scene
+        int next = GameData.getLast()+1;
+        if (next >= GameData.DLC_Limit)
+        {
+            goToMenu();
+        }
+        GameData.setLevel(next);
+        SceneManager.LoadScene("Lvl" + next);
     }
 }
