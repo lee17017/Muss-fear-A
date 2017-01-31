@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class WinSceneScr : MonoBehaviour {
     private int CamAngle = 60;
     private int delta=2;
+    public Text Win;
+    public Image Info;
+    private int rotation = 0;
 	// Use this for initialization
 	void Start () {
         
@@ -26,6 +29,22 @@ public class WinSceneScr : MonoBehaviour {
         {
             gameObject.transform.Rotate(Vector3.up, 0.5f);
             gameObject.transform.Rotate(Vector3.right, 0.5f);
+            if (rotation < 91) {
+                Win.rectTransform.rotation = Quaternion.Euler(90-rotation, 0, 0);
+                Win.gameObject.SetActive(true);
+                rotation++;
+            }
+            else
+            {
+                if (rotation < 182)
+                {
+                    Info.rectTransform.rotation = Quaternion.Euler(90 - (rotation-91), 0, 0);
+                    Info.gameObject.SetActive(true);
+                    rotation++;
+                }
+                
+            }
+                
         }
         if (CamAngle > 178)
         {
