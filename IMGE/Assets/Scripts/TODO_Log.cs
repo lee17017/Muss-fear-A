@@ -58,5 +58,6 @@
     //-Static bool zum Auschalten von Controllern   //In Arbeit
     //-Namen umändern                               //WICHTIG TODO
     //-Winsceneinfo erstellen                       //TODO
+    //-Pfeil destroy                                //TODO
     //Platz für NTH
 }
