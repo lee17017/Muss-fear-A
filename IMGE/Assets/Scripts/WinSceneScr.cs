@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WinSceneScr : MonoBehaviour {
     private int CamAngle = 60;
     private int delta=2;
     public Text Win;
     public Image Info;
+    public Button Next;
+    public Button Menu;
     private int rotation = 0;
 	// Use this for initialization
 	void Start () {
@@ -32,23 +35,40 @@ public class WinSceneScr : MonoBehaviour {
             if (rotation < 91) {
                 Win.rectTransform.rotation = Quaternion.Euler(90-rotation, 0, 0);
                 Win.gameObject.SetActive(true);
-                rotation++;
+                rotation += 2;
             }
-            else
+            else if (rotation < 182)
             {
-                if (rotation < 182)
-                {
-                    Info.rectTransform.rotation = Quaternion.Euler(90 - (rotation-91), 0, 0);
-                    Info.gameObject.SetActive(true);
-                    rotation++;
-                }
-                
+                Info.rectTransform.rotation = Quaternion.Euler(90 - (rotation-91), 0, 0);
+                Info.gameObject.SetActive(true);
+                rotation+=4;
             }
-                
+            else if (rotation < 273)
+            {
+                Next.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
+                Next.gameObject.SetActive(true);
+                rotation += 4;
+            }
+            else if (rotation < 364)
+            {
+                Menu.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 273), 0, 0);
+                Menu.gameObject.SetActive(true);
+                rotation += 4;
+            }
         }
         if (CamAngle > 178)
         {
             Camera.main.transform.GetComponent<Camera>().fieldOfView = 178;
         }
 	}
+
+    public void goToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void nextLvlLoader()
+    {
+        //Load next Scene
+    }
 }
