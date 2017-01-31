@@ -10,6 +10,8 @@ public class WinSceneScr : MonoBehaviour {
     public Image Info;
     public Button Next;
     public Button Menu;
+    public Image Sel;
+    public Image Instr;
     private int rotation = 0;
 	// Use this for initialization
 	void Start () {
@@ -41,12 +43,17 @@ public class WinSceneScr : MonoBehaviour {
             {
                 Info.rectTransform.rotation = Quaternion.Euler(90 - (rotation-91), 0, 0);
                 Info.gameObject.SetActive(true);
+                
                 rotation+=4;
             }
             else if (rotation < 273)
             {
                 Next.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
                 Next.gameObject.SetActive(true);
+                Sel.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
+                Sel.gameObject.SetActive(true);
+                Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
+                Instr.gameObject.SetActive(true);
                 rotation += 4;
             }
             else if (rotation < 364)
@@ -60,6 +67,8 @@ public class WinSceneScr : MonoBehaviour {
         {
             Camera.main.transform.GetComponent<Camera>().fieldOfView = 178;
         }
+        //Input von Controller einstellen
+
 	}
 
     public void goToMenu()
