@@ -47,11 +47,16 @@
      * 
      */
     //Aktualisierte Liste:
-    //-Sounds
-    //-Winscene auf Controller anpassen
-    //-Level 2
-    //-Ballz
-    //-Menü auf Winscene animation umbauen
-    //-Szenenübergänge in Win mit static Klasse
+    //-Sounds                                       //TODO
+    //-Winscene auf Controller anpassen             //Funktioniert
+    //-Level 2                                      //Muss noch verbessert werden (Collisions und so)
+    //-Ballz                                        //Sollte funktionieren
+    //-Menü auf Winscene animation umbauen          //TODO
+    //-Szenenübergänge in Win mit static Klasse     //Sollte funktionieren (ein bisheriger Test)
+    //-DLC Seite einrichten                         //TODO
+    //-Donationbutton mit Paypallverlinkung         //TODO
+    //-Static bool zum Auschalten von Controllern   //In Arbeit
+    //-Namen umändern                               //WICHTIG TODO
+    //-Winsceneinfo erstellen                       //TODO
     //Platz für NTH
 }
