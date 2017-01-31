@@ -15,20 +15,27 @@ public static class InputManager{
     private static bool init2=false;
     public static bool Init()
     {
+        if (!GameData.ControllerActive)
+            return false;
         if(!init[0] && !init[1])
             return Init(0) && Init(1);
         return true;
     }
     public static void setStream(string a, string b)
     {
-        if(!init[0])
-            stream[0] = new SerialPort(a, 115200);
-        if(!init[1])
-            stream[1] = new SerialPort(b, 115200);
+        if (GameData.ControllerActive)
+        {
+            if (!init[0] && GameData.ControllerActive)
+                stream[0] = new SerialPort(a, 115200);
+            if (!init[1])
+                stream[1] = new SerialPort(b, 115200);
+        }
     }
 
     public static bool Init(int player)
     {
+        if (!GameData.ControllerActive)
+            return false;
         if (!init[player])
         {
             int cnt = 2;
