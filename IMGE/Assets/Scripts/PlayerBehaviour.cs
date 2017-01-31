@@ -160,6 +160,11 @@ public class PlayerBehaviour : MonoBehaviour {
             takeDamage(3);
             Destroy(col.gameObject);
         }
+        else if (col.tag == "BallofDoom")
+        {
+            takeDamage((playerHP/2));
+            Destroy(col.gameObject);
+        }
 
     }
 
@@ -170,6 +175,7 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             activate = true;
         }
+        
         if ((col.gameObject.tag == "TriggerZone") && activate == true)
         {
 

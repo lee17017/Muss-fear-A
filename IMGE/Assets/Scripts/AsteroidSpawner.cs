@@ -16,6 +16,11 @@ public class AsteroidSpawner : MonoBehaviour {
 	void Start () {
         checkPoints = arrow.GetComponent<arrowScript>().cps;
         start = player.GetComponent<PlayerBehaviour>().playing;
+        for (int i = 0; i < 30; i++)
+        {
+            StartCoroutine("spawnNormal");
+            normal = true;
+        }
     }
 
     IEnumerator spawnNormal()
@@ -36,12 +41,6 @@ public class AsteroidSpawner : MonoBehaviour {
         sum = x + y + z;
         int HP = neu.transform.GetComponent<AsteroidBehaviour>().HP = (int)(sum * 3);
         neu.transform.GetComponent<AsteroidBehaviour>().speed = 100 - HP * 3;
-        if (speedSpawn < 30)
-        {
-            speedSpawn++;
-            yield return new WaitForSeconds(spwnCD / 3);
-        }
-        else
             yield return new WaitForSeconds(spwnCD);
         normal = true;
     }

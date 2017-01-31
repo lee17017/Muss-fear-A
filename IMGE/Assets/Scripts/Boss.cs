@@ -55,7 +55,11 @@ public class Boss : MonoBehaviour {
             {
                 textTimer = 0;
                 StartCoroutine("textBlinking");
-             
+            }
+            if(blowTime>0.1f)
+            {
+                StopCoroutine("textBlinking");
+                text.text = "";
             }
             if (InputManager.blow(0) > 4000 && InputManager.blow(1) > 4000 && Vector3.Distance(this.transform.position, player.transform.position) < 100)
             {
@@ -84,6 +88,8 @@ public class Boss : MonoBehaviour {
     }
     private void Bewegung()
     {
+        HealthbarR.gameObject.SetActive(true);
+        HealthbarY.gameObject.SetActive(true);
         //Bewegung
         Vector3 tmp = gameObject.transform.position;
         float Distance = Vector2.Distance(new Vector2(tmp.x, tmp.z), new Vector2(Ziel.x, Ziel.z));
