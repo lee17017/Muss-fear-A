@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Boss : MonoBehaviour {
-
+    public int HPMax=700;
     public int HP = 700;
     private Vector3 Ziel;
     private Vector3 nextZiel;
@@ -18,6 +18,8 @@ public class Boss : MonoBehaviour {
     private bool once = true;
     public Text text;
     public GameObject explosion;
+    public Image HealthbarR;
+    public Image HealthbarY;
     public float textTimer;
     // Use this for initialization
     void Start()
@@ -118,7 +120,7 @@ public class Boss : MonoBehaviour {
                 Destroy(this.gameObject);
             Destroy(col.gameObject);
             Debug.Log(HP);
-
+            HealthbarY.rectTransform.sizeDelta = new Vector2(200 * (1f * HP / HPMax), 20);//Healthanzeige aktualisieren
         }
     }
 

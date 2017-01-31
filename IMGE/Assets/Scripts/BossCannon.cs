@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossCannon : MonoBehaviour {
 
@@ -10,6 +11,9 @@ public class BossCannon : MonoBehaviour {
     public float timerCD;
     private float timer=0;
     private int start;
+    public Image HealthbarR;
+    public Image HealthbarY;
+
     void Start () {
         children = new GameObject[transform.childCount];
         for(int i =0; i<transform.childCount; i++)
@@ -52,6 +56,8 @@ public class BossCannon : MonoBehaviour {
             {
                 StartCoroutine("shoot");
                 timer = timerCD;
+                HealthbarR.gameObject.SetActive(true);
+                HealthbarY.gameObject.SetActive(true);
             }
         }
             
