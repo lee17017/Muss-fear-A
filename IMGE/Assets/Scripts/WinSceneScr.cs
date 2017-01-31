@@ -62,7 +62,7 @@ public class WinSceneScr : MonoBehaviour {
                 Menu.gameObject.SetActive(true);
                 rotation += 4;
             }
-            else if (rotation < 475)
+            else if (rotation < 455)
             {
                 Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 364), 0, 0);
                 Instr.gameObject.SetActive(true);
