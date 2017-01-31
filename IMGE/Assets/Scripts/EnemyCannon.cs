@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCannon : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     public GameObject bullet;
     public GameObject bulletSpawnPoint;
     private float rythm;
@@ -12,6 +12,7 @@ public class EnemyCannon : MonoBehaviour {
     private float xOffset, zOffset;
     // Use this for initialization
     void Start () {
+        player = GameObject.Find("Playership");
         rythm = Random.Range(2.4f, 3.4f);
 	}
 	

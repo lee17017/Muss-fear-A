@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFlyer : MonoBehaviour {
-    private int HP;
+    public int HP;
     public float speed;
     
     public GameObject explosion;

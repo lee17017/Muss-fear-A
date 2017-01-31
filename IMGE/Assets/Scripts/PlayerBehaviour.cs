@@ -12,16 +12,6 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
-    private Rigidbody rb;
-    public GameObject gameObject4;
-    public GameObject gameObject5;
-    public GameObject gameObject6;
-    public GameObject gameObject7;
-    GameObject trigger;
-    public GameObject enemyPrefab;
-    float xPosition = -50f;
-    float yPosition = 1.5f;
-    bool activate = true;
 
     private int PlayerNumber=0;
     public bool controller;
@@ -142,57 +132,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "TriggerZone")
-        {
-            Debug.Log("Hit TriggerZone");
-            TriggerZone tz = new TriggerZone();
-
-            Vector3 position4 = new Vector3(gameObject4.transform.position.x, gameObject4.transform.position.y, gameObject4.transform.position.z);
-            Vector3 position5 = new Vector3(gameObject5.transform.position.x, gameObject5.transform.position.y, gameObject5.transform.position.z);
-            Vector3 position6 = new Vector3(gameObject6.transform.position.x, gameObject6.transform.position.y, gameObject6.transform.position.z);
-            Vector3 position7 = new Vector3(gameObject7.transform.position.x, gameObject7.transform.position.y, gameObject7.transform.position.z);
-
-
-            GameObject newEnemy;
-
-
-            for (int i = 0; i < 6; i++)
-            {
-                newEnemy = Instantiate(enemyPrefab, position4, Quaternion.Euler(0, 90, 0));
-                position4 = new Vector3(position4.x, position4.y, position4.z + 7);  //in was für Abständen die Enemies gespawnt werden sollen 
-                newEnemy.transform.localScale = new Vector3(-0.08436213f, 0.1176149f, 0.06994853f);  //werden kleiner gescaled
-                                                                                                     // Debug.Log();
-                newEnemy.transform.Translate(-Vector3.forward * Time.deltaTime * 4);
-
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                newEnemy = Instantiate(enemyPrefab, position5, Quaternion.Euler(0, -90, 0));
-                position5 = new Vector3(position5.x + 7, position5.y, position5.z);  //in was für Abständen die Enemies gespawnt werden sollen 
-                newEnemy.transform.localScale = new Vector3(-0.08436213f, 0.1176149f, 0.06994853f);
-                //newEnemy.transform.position += Vector3.left*-enemySpeed * Time.deltaTime;
-
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                newEnemy = Instantiate(enemyPrefab, position6, Quaternion.Euler(0, -180, 0)) as GameObject;
-                position6 = new Vector3(position6.x + 7, position6.y, position6.z);  //in was für Abständen die Enemies gespawnt werden sollen 
-                newEnemy.transform.localScale = new Vector3(-0.08436213f, 0.1176149f, 0.06994853f);
-                //  newEnemy.transform.position -= Vector3.right * Time.deltaTime;
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                newEnemy = Instantiate(enemyPrefab, position7, Quaternion.Euler(0, 180, 0)) as GameObject;
-                position7 = new Vector3(position7.x, position7.y, position7.z + 7);  //in was für Abständen die Enemies gespawnt werden sollen 
-                newEnemy.transform.localScale = new Vector3(-0.08436213f, 0.1176149f, 0.06994853f);
-                //  newEnemy.transform.position -= Vector3.right * Time.deltaTime;
-            }
-
-
-            Debug.Log("Watch out");
-            // enemyPrefab.transform.position += Time.deltaTime * Vector3.forward;
-
-        }
+       
         if (col.tag == "Enemy")
         {
             takeDamage(5);
@@ -221,34 +161,7 @@ public class PlayerBehaviour : MonoBehaviour {
         }
 
     }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if (transform.position.z < -5) { activate = false; }
-        else
-        {
-            activate = true;
-        }
-        
-        if ((col.gameObject.tag == "TriggerZone") && activate == true)
-        {
-
-
-            Debug.Log("Collsion detected!");  //Get gameObject 
-            trigger = GameObject.FindGameObjectWithTag("TriggerZone");
-            float distance = trigger.transform.position.z - 5;
-            for (int i = 0; i < 6; i++)
-            {
-                Instantiate(enemyPrefab, new Vector3(xPosition, yPosition, distance), Quaternion.identity);  //Instantiate 5 enemies 
-                if (xPosition >= 50) { xPosition = -50; }
-                xPosition += 6;
-                activate = false;
-            }
-
-        }
-
-
-    }
+    
     void OnApplicationQuit()
     {
         if (controller)
