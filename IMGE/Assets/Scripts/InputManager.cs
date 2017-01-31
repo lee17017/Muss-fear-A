@@ -2,7 +2,7 @@
     using System.Collections;
     using System.IO.Ports; 
 public static class InputManager{
-    public static SerialPort[] stream = {new SerialPort("COM3", 115200), new SerialPort("COM4", 115200) }; //Coms selbst eintragen wenn Unity sich aufhängt
+    public static SerialPort[] stream = new SerialPort[2]; //Coms selbst eintragen wenn Unity sich aufhängt
     
     private static string recData = "";
     private static float winkel = 150;
@@ -18,6 +18,11 @@ public static class InputManager{
         if(!init[0] && !init[1])
             return Init(0) && Init(1);
         return true;
+    }
+    public static void setStream(string a, string b)
+    {
+        stream[0] = new SerialPort(a, 115200);
+        stream[1] = new SerialPort(b, 115200);
     }
 
     public static bool Init(int player)
