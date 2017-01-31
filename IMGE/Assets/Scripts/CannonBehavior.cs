@@ -25,7 +25,7 @@ public class CannonBehavior : MonoBehaviour {
     private int playerNr = 1;//2.Player
 
 	void Start () {
-      
+        controller = GameData.ControllerActive;
         actMun = maxMun;
         if(controller)
             controller = InputManager.Init(playerNr);

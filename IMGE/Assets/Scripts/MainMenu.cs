@@ -162,8 +162,7 @@ public class MainMenu : MonoBehaviour {
                 }
                 else if(selection < 3)
                 {
-                    string a = "Lvl" + (selection + 1);
-                    SceneManager.LoadScene(a);
+                    Load(selection+1);
                 }
             }
 

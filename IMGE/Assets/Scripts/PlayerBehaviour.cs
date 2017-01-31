@@ -22,7 +22,8 @@ public class PlayerBehaviour : MonoBehaviour {
     public int checkPointNr;
 	// Use this for initialization
 	void Start () {
-        if(controller)
+        controller = GameData.ControllerActive;
+        if (controller)
             controller = InputManager.Init(PlayerNumber);
         playerHP = 100;//100 start HP
         rigid = GetComponent<Rigidbody>();
