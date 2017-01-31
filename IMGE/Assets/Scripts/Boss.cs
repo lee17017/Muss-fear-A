@@ -123,21 +123,20 @@ public class Boss : MonoBehaviour {
             if (HP > 0 && !triggered)
                 HP -= 7;
             else if (HP <= 0)
+            {
+                player.GetComponent<PlayerBehaviour>().checkPointNr = 3;
+                GameObject temp = Instantiate(explosion);
+                temp.transform.position = transform.position;
+                temp.GetComponent<ParticleSystem>().startSize = 7;
+
+
+                temp.GetComponent<ParticleSystem>().startLifetime = 2;
                 Destroy(this.gameObject);
+
+            }
             Destroy(col.gameObject);
-            Debug.Log(HP);
             HealthbarY.rectTransform.sizeDelta = new Vector2(200 * (1f * HP / HPMax), 20);//Healthanzeige aktualisieren
         }
     }
-
-    void OnDestroy()
-    {
-        player.GetComponent<PlayerBehaviour>().checkPointNr = 3;
-        GameObject temp = Instantiate(explosion);
-        temp.transform.position = transform.position;
-        temp.GetComponent<ParticleSystem>().startSize = 7;
-
-
-        temp.GetComponent<ParticleSystem>().startLifetime = 2;
-    }
+    
 }

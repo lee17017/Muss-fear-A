@@ -21,8 +21,10 @@ public static class InputManager{
     }
     public static void setStream(string a, string b)
     {
-        stream[0] = new SerialPort(a, 115200);
-        stream[1] = new SerialPort(b, 115200);
+        if(!init[0])
+            stream[0] = new SerialPort(a, 115200);
+        if(!init[1])
+            stream[1] = new SerialPort(b, 115200);
     }
 
     public static bool Init(int player)

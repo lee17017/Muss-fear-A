@@ -30,7 +30,7 @@ public class arrowScript : MonoBehaviour {
             x = cps[act].transform.position.x;
             z = cps[act].transform.position.z;
         }
-        if (playerScript.checkPointNr != act && act < max-1)
+        if (playerScript.checkPointNr != act && playerScript.checkPointNr < max)
         {
             act = playerScript.checkPointNr; 
             cps[act].SetActive(true);
