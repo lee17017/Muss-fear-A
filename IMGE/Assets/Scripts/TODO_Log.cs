@@ -47,17 +47,17 @@
      * 
      */
     //Aktualisierte Liste:
-    //-Sounds                                       //TODO
+    //-Sounds                                       //TODO                                              !!!!!
     //-Winscene auf Controller anpassen             //Funktioniert
-    //-Level 2                                      //Muss noch verbessert werden (Collisions und so)
-    //-Ballz                                        //Sollte funktionieren
-    //-Menü auf Winscene animation umbauen          //TODO
-    //-Szenenübergänge in Win mit static Klasse     //Sollte funktionieren (ein bisheriger Test)
-    //-DLC Seite einrichten                         //TODO
-    //-Donationbutton mit Paypallverlinkung         //TODO
-    //-Static bool zum Auschalten von Controllern   //In Arbeit
-    //-Namen umändern                               //WICHTIG TODO
-    //-Winsceneinfo erstellen                       //TODO
-    //-Pfeil destroy                                //TODO
+    //-Level 2                                      //Muss noch verbessert werden (Collisions und so)   !!!!!
+    //-Ballz                                        //Sollte funktionieren                              Test
+    //-Menü auf Winscene animation umbauen          //TODO                                              !!!!!
+    //-Szenenübergänge in Win mit static Klasse     //Sollte funktionieren (ein bisheriger Test)        Test
+    //-DLC Seite einrichten                         //TODO                                              !!!!!
+    //-Donationbutton mit Paypallverlinkung         //TODO                                              !!!!!
+    //-Static bool zum Auschalten von Controllern   //Gemacht
+    //-Namen umändern                               //WICHTIG TODO                                      !!!!!
+    //-Winsceneinfo erstellen                       //Gemacht
+    //-Pfeil destroy                                //TODO                                              !!!!!
     //Platz für NTH
 }

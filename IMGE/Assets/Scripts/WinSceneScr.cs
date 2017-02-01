@@ -13,6 +13,10 @@ public class WinSceneScr : MonoBehaviour {
     public Button Menu;
     public Image Sel;
     public Image Instr;
+    public Image Star1;
+    public Image Star2;
+    public Image Star3;
+    public Image Star4;
     private int rotation = 0;
     private bool next = true;
 	// Use this for initialization
@@ -39,13 +43,14 @@ public class WinSceneScr : MonoBehaviour {
             if (rotation < 91) {
                 Win.rectTransform.rotation = Quaternion.Euler(90-rotation, 0, 0);
                 Win.gameObject.SetActive(true);
-                rotation += 2;
+                rotation += 4;
             }
             else if (rotation < 182)
             {
                 Info.rectTransform.rotation = Quaternion.Euler(90 - (rotation-91), 0, 0);
                 Info.gameObject.SetActive(true);
-                
+                Star1.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 91), 0, 0);
+                Star1.gameObject.SetActive(true);
                 rotation+=4;
             }
             else if (rotation < 273)
@@ -53,20 +58,26 @@ public class WinSceneScr : MonoBehaviour {
                 Next.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
                 Next.gameObject.SetActive(true);
                 Sel.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
-                Sel.gameObject.SetActive(true);
-                rotation += 4;
+                Sel.gameObject.SetActive(true); 
+                Star2.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 182), 0);
+                Star2.gameObject.SetActive(true);
+                rotation += 8;
             }
             else if (rotation < 364)
             {
                 Menu.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 273), 0, 0);
                 Menu.gameObject.SetActive(true);
-                rotation += 4;
+                Star3.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 273), 0);
+                Star3.gameObject.SetActive(true);
+                rotation += 8;
             }
             else if (rotation < 455)
             {
                 Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 364), 0, 0);
                 Instr.gameObject.SetActive(true);
-                rotation += 4;
+                Star4.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 364), 0);
+                Star4.gameObject.SetActive(true);
+                rotation += 8;
             }
         }
         if (CamAngle > 178)
