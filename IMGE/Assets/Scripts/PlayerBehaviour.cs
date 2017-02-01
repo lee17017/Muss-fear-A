@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public bool playing = false;
     public Text text;
     public int checkPointNr;
+    public GameObject Paralax;
 	// Use this for initialization
 	void Start () {
         controller = GameData.ControllerActive;
@@ -120,7 +121,10 @@ public class PlayerBehaviour : MonoBehaviour {
         //Debug.Log(in1 + " " + in2);
         //if (sin < 0){sin *= -1;}
         //if (cos < 0){cos *= -1;}
+        Vector3 Pos = transform.position;
         transform.Translate(-Vector3.forward * (in1 + in2) * 5 * Time.deltaTime,Space.Self);
+        Vector3 Last = transform.position;
+        Paralax.gameObject.GetComponent<Stars>().givePos(Pos, Last);//For Paralaxscrolling
     }
 
     public void takeDamage(int damage)
