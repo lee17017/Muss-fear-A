@@ -49,16 +49,16 @@
     //Aktualisierte Liste:
     //-Sounds                                       //TODO                                              !!!!!
     //-Winscene auf Controller anpassen             //Funktioniert
-    //-Level 2                                      //Muss noch verbessert werden (Collisions und so)   !!!!!
+    //-Level 2                                      //Sollte passen
     //-Ballz                                        //Sollte funktionieren                              Test
     //-Menü auf Winscene animation umbauen          //TODO                                              !!!!!
     //-Szenenübergänge in Win mit static Klasse     //Sollte funktionieren (ein bisheriger Test)        Test
     //-DLC Seite einrichten                         //TODO                                              !!!!!
     //-Donationbutton mit Paypallverlinkung         //TODO                                              !!!!!
     //-Static bool zum Auschalten von Controllern   //Gemacht
-    //-Namen umändern                               //WICHTIG TODO                                      !!!!!
+    //-Namen umändern                               //Gemacht
     //-Winsceneinfo erstellen                       //Gemacht
-    //-Pfeil destroy                                //TODO                                              !!!!!
-    //Verschiedene Rotationen bei Asteroiden
+    //-Pfeil destroy                                //Gemacht
+    //Verschiedene Rotationen bei Asteroiden        //TODO
     //Platz für NTH
 }
