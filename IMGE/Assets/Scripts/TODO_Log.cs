@@ -59,5 +59,6 @@
     //-Namen umändern                               //WICHTIG TODO                                      !!!!!
     //-Winsceneinfo erstellen                       //Gemacht
     //-Pfeil destroy                                //TODO                                              !!!!!
+    //Verschiedene Rotationen bei Asteroiden
     //Platz für NTH
 }

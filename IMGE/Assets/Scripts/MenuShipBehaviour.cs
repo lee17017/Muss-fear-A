@@ -6,8 +6,9 @@ public class MenuShipBehaviour : MonoBehaviour {
     private Vector3 nextZiel;
     private int Zielcounter = 2;
     private GameObject CameraBase;
-    float CamAngle = 60;
-    bool change=true;
+    private float CamAngle = 60;
+    private bool change=true;
+    public GameObject Explo;
 
 	// Use this for initialization
 	void Start () {
@@ -67,5 +68,11 @@ public class MenuShipBehaviour : MonoBehaviour {
         nextZiel = GameObject.Find("Position" + (Zielcounter % 10)).transform.position;
         Zielcounter++;
         StartCoroutine(SwitchPos());
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        Destroy(col.gameObject);
+        Instantiate(Explo, transform.position, Quaternion.identity);
     }
 }
