@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneScr : MonoBehaviour {
 
-    private float delay = 2;
+    private float delay = 0.5f;
 	// Use this for initialization
 	void Start () {
         InputManager.Init();

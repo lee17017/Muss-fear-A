@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class WinSceneScr : MonoBehaviour {
     private int CamAngle = 60;
     private int delta=2;
-    private float delay = 2;
+    private float delay = 0.5f;
     public Text Win;
     public Image Info;
     public Button Next;

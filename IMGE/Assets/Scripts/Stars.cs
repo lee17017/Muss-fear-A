@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Stars : MonoBehaviour {
 
-    private float lspeed = 2;
-    private float bspeed = 4;
+    private float lspeed = -0.5f;
+    private float bspeed = -0.5f;
     private Vector2 PlayerPos;
     private Vector2 LastPos;
-    private Vector3 Direction=Vector3.zero;
+    private Vector3 Direction;
     public GameObject[] lStar = new GameObject[9];
     public GameObject[] bStar = new GameObject[9];
 	// Use this for initialization
@@ -17,7 +17,6 @@ public class Stars : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //float amtToMove = lspeed * Time.deltaTime;
         for (int i = 0; i < 9; i++)
         {
             lStar[i].gameObject.transform.Translate(Direction * lspeed * Time.deltaTime, Space.World);
@@ -61,7 +60,6 @@ public class Stars : MonoBehaviour {
                 bStar[i].transform.position = new Vector3(bStar[i].transform.position.x, -5, bStar[i].transform.position.z + 360);//Sollte passen
             }
         }
-        //Direction = Vector3.zero;
     }
     public void givePos(Vector3 Pos, Vector3 Last)
     {
