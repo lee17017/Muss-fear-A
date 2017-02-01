@@ -18,6 +18,7 @@ public class Boss : MonoBehaviour {
     private bool once = true;
     public Text text;
     public GameObject explosion;
+    public GameObject wahhhh;
     public Image HealthbarR;
     public Image HealthbarY;
     public float textTimer;
@@ -130,7 +131,7 @@ public class Boss : MonoBehaviour {
             else if (HP <= 0)
             {
                 player.GetComponent<PlayerBehaviour>().checkPointNr = 3;
-                 temp = Instantiate(explosion);
+                 temp = Instantiate(wahhhh);
                 temp.transform.position = transform.position;
                 temp.GetComponent<ParticleSystem>().startSize = 7;
 
