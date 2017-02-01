@@ -21,6 +21,8 @@ public class MenuEventScr : MonoBehaviour {
             spawn = false;
             GameObject tmp=Instantiate(Asteroid,new Vector3(1000,0,Random.Range(-200, 200)),Quaternion.identity);
             tmp.GetComponent<Rigidbody>().velocity = new Vector3(-70, 0, 0);
+            int x = Random.Range(1, 5);
+            tmp.gameObject.transform.localScale = new Vector3(x, x, x);
             StartCoroutine(Spawn());
         }
         
@@ -28,8 +30,7 @@ public class MenuEventScr : MonoBehaviour {
 
     private Vector3 FindRandomPos()
     {
-        Vector3 rand = Random.onUnitSphere;
-        return new Vector3(rand.x*1000,0,rand.z);
+        return Random.onUnitSphere;
     }
 
     IEnumerator Spawn()
