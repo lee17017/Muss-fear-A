@@ -53,12 +53,13 @@
     //-Ballz                                        //Sollte funktionieren                              Test
     //-Menü auf Winscene animation umbauen          //TODO                                              !!!!!
     //-Szenenübergänge in Win mit static Klasse     //Sollte funktionieren (ein bisheriger Test)        Test
-    //-DLC Seite einrichten                         //TODO                                              !!!!!
-    //-Donationbutton mit Paypallverlinkung         //TODO                                              !!!!!
+    //-DLC Seite einrichten                         //TODO
+    //-Donationbutton mit Paypallverlinkung         //TODO
     //-Static bool zum Auschalten von Controllern   //Gemacht
     //-Namen umändern                               //Gemacht
     //-Winsceneinfo erstellen                       //Gemacht
     //-Pfeil destroy                                //Gemacht
     //Verschiedene Rotationen bei Asteroiden        //Gemacht
+    //Paralaxscrolling
     //Platz für NTH
 }
