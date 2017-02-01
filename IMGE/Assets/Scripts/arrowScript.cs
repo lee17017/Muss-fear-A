@@ -29,7 +29,13 @@ public class arrowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(boss)
+        if (playerScript.checkPointNr >= max && once)
+        {
+            once = false;
+            Debug.Log("Win");
+            StartCoroutine("kaboom");
+        }
+        if (boss && once)
         {
             x = cps[act].transform.position.x;
             z = cps[act].transform.position.z;
@@ -41,12 +47,7 @@ public class arrowScript : MonoBehaviour {
             x = cps[act].transform.position.x;
             z = cps[act].transform.position.z;
         }
-        else if (playerScript.checkPointNr >= max && once)
-        {
-            once = false;
-            Debug.Log("Win");
-            StartCoroutine("kaboom");
-        }
+  
 
         if (once)
         {

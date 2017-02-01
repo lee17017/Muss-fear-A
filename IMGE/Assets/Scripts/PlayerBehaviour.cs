@@ -48,7 +48,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void checkZero()
     {
-        text.text = "Setzte Getriebe auf 0";
+        text.text = "Pilot set your engines to zero";
         float in1, in2;
         in1 = in2 = 0;
         in2 = -InputManager.Analog(PlayerNumber, 4);

@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
-            text.text = "Both Players BLOW";
+            text.text = "Gunner BLOW his shield away";
             yield return new WaitForSeconds(1f);
             text.text = "";
             yield return new WaitForSeconds(0.5f);
@@ -61,7 +61,7 @@ public class Boss : MonoBehaviour {
                 StopCoroutine("textBlinking");
                 text.text = "";
             }
-            if (InputManager.blow(0) > 4000 && InputManager.blow(1) > 4000 && Vector3.Distance(this.transform.position, player.transform.position) < 100)
+            if (InputManager.blow(1) > 4000 && Vector3.Distance(this.transform.position, player.transform.position) < 150)
             {
                 blowTime += Time.deltaTime;
             }
@@ -70,8 +70,12 @@ public class Boss : MonoBehaviour {
                 shield.SetActive(false);
                 triggered = false;
             }
+            else if (blowTime > 1.5)
+                shield.GetComponent<ParticleSystem>().emissionRate = 100;
             else if (blowTime > 1)
                 shield.GetComponent<ParticleSystem>().emissionRate = 200;
+            else if(blowTime > 0.5f)
+                shield.GetComponent<ParticleSystem>().emissionRate = 500;
             Debug.Log(blowTime);
         }
 
