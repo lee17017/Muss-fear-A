@@ -47,7 +47,7 @@
      * 
      */
     //Aktualisierte Liste:
-    //-Sounds                                       //TODO                                              !!!!!
+    //-Sounds                                       //In Arbeit                                         !!!!!
     //-Winscene auf Controller anpassen             //Funktioniert
     //-Level 2                                      //Sollte passen
     //-Ballz                                        //Sollte funktionieren                              Test
@@ -59,6 +59,6 @@
     //-Namen umändern                               //Gemacht
     //-Winsceneinfo erstellen                       //Gemacht
     //-Pfeil destroy                                //Gemacht
-    //Verschiedene Rotationen bei Asteroiden        //TODO
+    //Verschiedene Rotationen bei Asteroiden        //Gemacht
     //Platz für NTH
 }
