@@ -38,27 +38,23 @@ public class EnemyPatroller : MonoBehaviour {
         if(col.tag=="Bullet")
         {
 
-
+            GameObject temp = Instantiate(explosion);
+            temp.transform.position = col.transform.position;
             Destroy(col.gameObject);
             if (HP > 0)
             {
                
                 HP -= 7;
             }
-            else 
+            else
             {
+                temp = Instantiate(explosion);
+                temp.transform.position = transform.position;
+                temp.GetComponent<ParticleSystem>().startSize = 4;
+                temp.GetComponent<ParticleSystem>().startLifetime = 1;
                 Destroy(this.gameObject);
             }
         }
     }
-    void OnDestroy()
-    {
 
-        GameObject temp = Instantiate(explosion);
-        temp.transform.position = transform.position;
-        temp.GetComponent<ParticleSystem>().startSize = 4;
-
-
-        temp.GetComponent<ParticleSystem>().startLifetime = 1;
-    }
 }

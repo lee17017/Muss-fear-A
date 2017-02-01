@@ -12,9 +12,16 @@ public class BulletBehavior : MonoBehaviour {
 
 	void Start () {
         GetComponent<Rigidbody>().velocity = transform.up * bulletSpeed; // bei richtiger Rotation muss forward
-        Destroy(gameObject, lifeTime);//nach lifeTime Sekunden despawnt bullet
+        StartCoroutine("destruction");
     }
 
+    IEnumerator destruction()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        GameObject temp = Instantiate(explosion);
+        temp.transform.position = this.gameObject.transform.position;
+        Destroy(gameObject);
+    }
 	void Update () {
 		
 	}
@@ -31,9 +38,5 @@ public class BulletBehavior : MonoBehaviour {
         }
     }
 
-    void OnDestroy()
-    {
-        GameObject temp = Instantiate(explosion);
-        temp.transform.position = this.gameObject.transform.position;
-    }
+ 
 }

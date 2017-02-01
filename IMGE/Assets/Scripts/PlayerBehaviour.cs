@@ -11,8 +11,8 @@ using UnityEngine.UI;
  */
 
 public class PlayerBehaviour : MonoBehaviour {
-
-
+    public bool inv = false;
+    public GameObject explosion;
     private int PlayerNumber=0;
     public bool controller;
     public int playerHP;
@@ -23,6 +23,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         controller = GameData.ControllerActive;
+        GameData.playing = true;
         if (controller)
             controller = InputManager.Init(PlayerNumber);
         playerHP = 100;//100 start HP
@@ -124,20 +125,29 @@ public class PlayerBehaviour : MonoBehaviour {
 
     public void takeDamage(int damage)
     {
-        playerHP -= damage;
-        if (playerHP <= 0)
-            SceneManager.LoadScene("Endscene");
-        //Changed
-        StateUpdater.UpdateLife(-damage);
+        if (!inv)
+        {
+            playerHP -= damage;
+            if (playerHP <= 0)
+                SceneManager.LoadScene("Endscene");
+            //Changed
+            StateUpdater.UpdateLife(-damage);
+        }
     }
 
     void OnTriggerEnter(Collider col)
     {
-       
+        GameObject temp;
+
         if (col.tag == "Enemy")
         {
             takeDamage(5);
             Destroy(col.gameObject);
+            temp = Instantiate(explosion);
+            temp.transform.position = col.transform.position;
+            temp.GetComponent<ParticleSystem>().startSize = 4;
+            temp.GetComponent<ParticleSystem>().startLifetime = 1;
+
         }
         else if (col.tag == "CP")
         {
@@ -146,25 +156,37 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         else if (col.tag == "Asteroid")
         {
-
+            temp = Instantiate(explosion);
+            temp.transform.position = col.transform.position;
+            temp.GetComponent<ParticleSystem>().startSize = 4;
+            temp.GetComponent<ParticleSystem>().startLifetime = 1;
             takeDamage(col.GetComponent<AsteroidBehaviour>().HP);
             Destroy(col.gameObject);
         }
         else if (col.tag == "EnemyBullet")
         {
+            temp = Instantiate(explosion);
+            temp.transform.position = col.transform.position;
+            temp.GetComponent<ParticleSystem>().startSize = 4;
+            temp.GetComponent<ParticleSystem>().startLifetime = 1;
             takeDamage(3);
             Destroy(col.gameObject);
         }
         else if (col.tag == "BallofDoom")
         {
+            temp = Instantiate(explosion);
+            temp.transform.position = col.transform.position;
+            temp.GetComponent<ParticleSystem>().startSize = 4;
+            temp.GetComponent<ParticleSystem>().startLifetime = 1;
             takeDamage((playerHP/2));
             Destroy(col.gameObject);
         }
 
     }
-    
+
     void OnApplicationQuit()
     {
+        GameData.playing = false;
         if (controller)
         {
             InputManager.outLED(0);

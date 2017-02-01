@@ -31,21 +31,24 @@ public class AsteroidBehaviour : MonoBehaviour {
         if (col.tag == "Bullet")
         {
 
+            GameObject temp = Instantiate(Explo);
+            temp.transform.position = col.gameObject.transform.position;
             Destroy(col.gameObject);
             HP -= 7;
         }
         else if (col.tag == "Asteroid" && HP <= col.GetComponent<AsteroidBehaviour>().HP)
         {
+            Instantiate(Explo, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 
         if (HP <= 0)
+        {
+            Instantiate(Explo, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        }
     }
 
-    void OnDestroy()
-    {
-        Instantiate(Explo, transform.position, Quaternion.identity);
-    }
+
 
 }

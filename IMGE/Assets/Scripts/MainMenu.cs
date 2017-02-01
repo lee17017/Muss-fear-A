@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameData.setLevel(0);
         //InputManager.Init(); //Wieder entkommentieren
         //Alles voreingestellt...
         //Multiplayer.gameObject.SetActive(true);//Multiplayer aktivieren

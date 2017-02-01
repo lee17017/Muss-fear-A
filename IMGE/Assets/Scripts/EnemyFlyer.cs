@@ -44,18 +44,13 @@ public class EnemyFlyer : MonoBehaviour {
             }
             else
             {
+                GameObject temp = Instantiate(explosion);
+                temp.transform.position = transform.position;
+                temp.GetComponent<ParticleSystem>().startSize = 4;
+                temp.GetComponent<ParticleSystem>().startLifetime = 1;
                 Destroy(this.gameObject);
             }
         }
     }
-    void OnDestroy()
-    {
 
-        GameObject temp = Instantiate(explosion);
-        temp.transform.position = transform.position;
-        temp.GetComponent<ParticleSystem>().startSize = 4;
-
-
-        temp.GetComponent<ParticleSystem>().startLifetime = 1;
-    }
 }

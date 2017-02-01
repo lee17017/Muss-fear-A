@@ -19,6 +19,8 @@ public class BallofDoom : MonoBehaviour {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (HP < 0)
         {
+            GameObject temp = Instantiate(explosion);
+            temp.transform.position = transform.position;
             Destroy(this.gameObject);
         }
 	}
@@ -28,13 +30,11 @@ public class BallofDoom : MonoBehaviour {
         {
             HP -= 7;
             Destroy(col.gameObject);
+            GameObject temp = Instantiate(explosion);
+            temp.transform.position = col.gameObject.transform.position;
         }
 
     }
 
-    void OnDestroy()
-    {
-        GameObject temp = Instantiate(explosion);
-        temp.transform.position = transform.position;
-    }
+
 }

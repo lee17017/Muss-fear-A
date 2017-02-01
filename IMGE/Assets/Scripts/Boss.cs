@@ -120,12 +120,13 @@ public class Boss : MonoBehaviour {
     {
         if (col.tag == "Bullet")
         {
+            GameObject temp;
             if (HP > 0 && !triggered)
                 HP -= 7;
             else if (HP <= 0)
             {
                 player.GetComponent<PlayerBehaviour>().checkPointNr = 3;
-                GameObject temp = Instantiate(explosion);
+                 temp = Instantiate(explosion);
                 temp.transform.position = transform.position;
                 temp.GetComponent<ParticleSystem>().startSize = 7;
 
@@ -134,6 +135,8 @@ public class Boss : MonoBehaviour {
                 Destroy(this.gameObject);
 
             }
+            temp = Instantiate(explosion);
+            temp.transform.position = col.gameObject.transform.position;
             Destroy(col.gameObject);
             HealthbarY.rectTransform.sizeDelta = new Vector2(200 * (1f * HP / HPMax), 20);//Healthanzeige aktualisieren
         }

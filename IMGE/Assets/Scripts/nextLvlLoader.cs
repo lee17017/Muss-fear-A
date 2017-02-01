@@ -22,7 +22,11 @@ public class nextLvlLoader : MonoBehaviour {
 	}
     IEnumerator LoadScene()
     {
-        yield return new WaitForSeconds(delay);
+        player.GetComponent<PlayerBehaviour>().inv = true;
+        yield return new WaitForSeconds(delay-1);
+        GameData.playing = false;
+
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(nextLvlName);
     }
 }
