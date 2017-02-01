@@ -5,11 +5,15 @@ using UnityEngine;
 public class arrowScript : MonoBehaviour {
 
     public GameObject player;
+
+    public GameObject explosion;
     public GameObject[] cps;
     private PlayerBehaviour playerScript;
     private float x, z;
     private int max, act;
     public bool boss = false;
+    private bool once = true;
+    private float rotSpeed = 20f;
 	// Use this for initialization
 	void Start () {
         playerScript = player.GetComponent<PlayerBehaviour>();
@@ -32,22 +36,56 @@ public class arrowScript : MonoBehaviour {
         }
         if (playerScript.checkPointNr != act && playerScript.checkPointNr < max)
         {
-            act = playerScript.checkPointNr; 
+            act = playerScript.checkPointNr;
             cps[act].SetActive(true);
             x = cps[act].transform.position.x;
             z = cps[act].transform.position.z;
         }
-        
-        float dX = x - player.transform.position.x;
-        float dZ = z - player.transform.position.z;
-
-        float temp = Mathf.Atan(dZ / dX) / Mathf.PI * 180;
-        if (dX > 0)
+        else if (playerScript.checkPointNr >= max && once)
         {
-            temp = temp - 90;
+            once = false;
+            Debug.Log("Win");
+            StartCoroutine("kaboom");
         }
-        else
-            temp += 90;
-        this.transform.rotation = Quaternion.Euler(0,0, temp);
+
+        if (once)
+        {
+            float dX = x - player.transform.position.x;
+            float dZ = z - player.transform.position.z;
+
+            float temp = Mathf.Atan(dZ / dX) / Mathf.PI * 180;
+            if (dX > 0)
+            {
+                temp = temp - 90;
+            }
+            else
+                temp += 90;
+
+            this.transform.rotation = Quaternion.Euler(0, 0, temp);
+        }
     }
+
+    IEnumerator kaboom()
+    {
+
+        for (int i = 0; i < 70; i++)
+        {
+            if (i % 10 == 0)
+            {
+                rotSpeed += i;
+            }
+            this.transform.Rotate(Vector3.forward, rotSpeed);
+            yield return new WaitForSeconds(0.05f);
+        }
+        GameObject temp = Instantiate(explosion);
+       
+        temp.transform.position = player.transform.position + new Vector3(61.5f,0,30);
+        temp.GetComponent<ParticleSystem>().startSize = 6;
+
+
+        temp.GetComponent<ParticleSystem>().startLifetime = 2;
+        Destroy(this.gameObject);
+
+    }
+    
 }
