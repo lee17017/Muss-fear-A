@@ -19,9 +19,11 @@ public class WinSceneScr : MonoBehaviour {
     public Image Star4;
     private int rotation = 0;
     private bool next = true;
+    private int randStar;
 	// Use this for initialization
 	void Start () {
         InputManager.Init();
+        randStar = Random.Range(1, 4);
 	}
 	
 	// Update is called once per frame
@@ -58,7 +60,7 @@ public class WinSceneScr : MonoBehaviour {
                 Next.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
                 Next.gameObject.SetActive(true);
                 Sel.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 182), 0, 0);
-                Sel.gameObject.SetActive(true); 
+                Sel.gameObject.SetActive(true);
                 Star2.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 182), 0);
                 Star2.gameObject.SetActive(true);
                 rotation += 8;
@@ -67,16 +69,24 @@ public class WinSceneScr : MonoBehaviour {
             {
                 Menu.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(90 - (rotation - 273), 0, 0);
                 Menu.gameObject.SetActive(true);
-                Star3.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 273), 0);
-                Star3.gameObject.SetActive(true);
+                if (randStar >= 2)
+                {
+                    Star3.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 273), 0);
+                    Star3.gameObject.SetActive(true);
+                }
+
                 rotation += 8;
             }
             else if (rotation < 455)
             {
                 Instr.rectTransform.rotation = Quaternion.Euler(90 - (rotation - 364), 0, 0);
                 Instr.gameObject.SetActive(true);
-                Star4.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 364), 0);
-                Star4.gameObject.SetActive(true);
+                if (randStar >= 2)
+                {
+                    Star4.GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 90 - (rotation - 364), 0);
+                    Star4.gameObject.SetActive(true);
+                }
+
                 rotation += 8;
             }
         }
